@@ -106,4 +106,17 @@ public class Information {
     public boolean modifyLanguage(String language, String value) {
         return languages.updateKey(language, value);
     }
+
+    @Override
+    public String toString() {
+        return "Information{" +
+                "nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", email='" + email + '\'' +
+                ", telefon='" + telefon + '\'' +
+                ", data_nastere=" + data_nastere +
+                ", sex='" + sex + '\'' +
+                ", languages=" + languages +
+                '}';
+    }
 }

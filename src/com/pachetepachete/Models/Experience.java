@@ -69,4 +69,14 @@ public class Experience implements Comparable<Experience> {
 
         return this.start.compareTo(o.start);
     }
+
+    @Override
+    public String toString() {
+        return "Experience{" +
+                "start=" + start +
+                ", end=" + end +
+                ", pozitie='" + pozitie + '\'' +
+                ", companie='" + companie + '\'' +
+                '}';
+    }
 }

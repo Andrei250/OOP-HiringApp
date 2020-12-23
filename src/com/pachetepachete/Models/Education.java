@@ -79,4 +79,15 @@ public class Education implements Comparable<Education> {
 
         return this.start.compareTo(o.start);
     }
+
+    @Override
+    public String toString() {
+        return "Education{" +
+                "start=" + start +
+                ", end=" + end +
+                ", institutie='" + institutie + '\'' +
+                ", nivelEducatie='" + nivelEducatie + '\'' +
+                ", medie=" + medie +
+                '}';
+    }
 }
