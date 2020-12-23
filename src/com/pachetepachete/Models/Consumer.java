@@ -32,6 +32,22 @@ public abstract class Consumer implements Comparator<Consumer> {
         }
     }
 
+    public boolean remove(Experience experience) {
+        return this.resume.remove(experience);
+    }
+
+    public boolean remove(Education education) {
+        return this.resume.remove(education);
+    }
+
+    public boolean modify(Experience experience) {
+        return this.resume.modify(experience);
+    }
+
+    public boolean modify(Education education) {
+        return this.resume.modify(education);
+    }
+
     public int getDegreeInFriendship(Consumer consumer) {
         LinkedList<Pair<Consumer, Integer>> queue = new LinkedList<>();
         queue.add(new Pair<>(this, 0));
@@ -143,16 +159,62 @@ public abstract class Consumer implements Comparator<Consumer> {
             this.experiences = experiences;
         }
 
-        public void add(Education education) {
+        public boolean add(Education education) {
             if (!this.educations.contains(education)) {
-                this.educations.add(education);
+                boolean check = this.educations.add(education);
+
+                if (!check) {
+                    return false;
+                }
+
+                Collections.sort(this.educations);
+                return true;
             }
+
+            return false;
         }
 
-        public void add(Experience experience) {
+        public boolean add(Experience experience) {
             if (!this.experiences.contains(experience)) {
-                this.experiences.add(experience);
+                boolean check = this.experiences.add(experience);
+
+                if (!check) {
+                    return false;
+                }
+
+                Collections.sort(this.experiences);
+                return true;
             }
+
+            return false;
+        }
+
+        public boolean remove(Education education) {
+            return this.educations.remove(education);
+        }
+
+        public boolean remove(Experience experience) {
+            return this.experiences.remove(experience);
+        }
+
+        public boolean modify(Education education) {
+            if (this.educations.contains(education)) {
+                int index = this.educations.indexOf(education);
+                this.educations.set(index, education.copy());
+                return true;
+            }
+
+            return false;
+        }
+
+        public boolean modify(Experience experience) {
+            if (this.experiences.contains(experience)) {
+                int index = this.experiences.indexOf(experience);
+                this.experiences.set(index, experience.copy());
+                return true;
+            }
+
+            return false;
         }
 
         @Override

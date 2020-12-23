@@ -4,7 +4,7 @@ import com.pachetepachete.Exceptions.InvalidDatesException;
 
 import java.util.Date;
 
-public class Education implements Comparable<Education> {
+public class Education extends Xerox implements Comparable<Education> {
     private Date start;
     private Date end;
     private String institutie;
@@ -25,6 +25,14 @@ public class Education implements Comparable<Education> {
         this.institutie = institutie;
         this.nivelEducatie = nivelEducatie;
         this.medie = medie;
+    }
+
+    public Education(Education education) {
+        this.start = education.start;
+        this.end = education.end;
+        this.institutie = education.institutie;
+        this.nivelEducatie = education.nivelEducatie;
+        this.medie = education.medie;
     }
 
     public Date getStart() {
@@ -89,5 +97,10 @@ public class Education implements Comparable<Education> {
                 ", nivelEducatie='" + nivelEducatie + '\'' +
                 ", medie=" + medie +
                 '}';
+    }
+
+    @Override
+    public Education copy() {
+        return new Education(this);
     }
 }

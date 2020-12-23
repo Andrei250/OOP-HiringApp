@@ -4,7 +4,7 @@ import com.pachetepachete.Exceptions.InvalidDatesException;
 
 import java.util.Date;
 
-public class Experience implements Comparable<Experience> {
+public class Experience extends Xerox implements Comparable<Experience> {
     private Date start;
     private Date end;
     private String pozitie;
@@ -23,6 +23,13 @@ public class Experience implements Comparable<Experience> {
         this.end = end;
         this.pozitie = pozitie;
         this.companie = companie;
+    }
+
+    public Experience(Experience experience) {
+        this.end = experience.end;
+        this.start = experience.start;
+        this.companie = experience.companie;
+        this.pozitie = experience.pozitie;
     }
 
     public Date getStart() {
@@ -78,5 +85,10 @@ public class Experience implements Comparable<Experience> {
                 ", pozitie='" + pozitie + '\'' +
                 ", companie='" + companie + '\'' +
                 '}';
+    }
+
+    @Override
+    public Experience copy() {
+        return new Experience(this);
     }
 }
