@@ -46,4 +46,8 @@ public class Employee extends Consumer {
         this.salariu = salariu;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

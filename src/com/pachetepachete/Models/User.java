@@ -52,4 +52,9 @@ public class User extends Consumer {
         exp += (ans / 12);
         return exp;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

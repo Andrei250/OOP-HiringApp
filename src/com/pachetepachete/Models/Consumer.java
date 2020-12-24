@@ -36,12 +36,20 @@ public abstract class Consumer implements Comparator<Consumer> {
     }
 
     public void add(Education education) {
+        if (this.resume == null) {
+            return;
+        }
+
         if (!this.resume.getEducations().contains(education)) {
             this.resume.add(education);
         }
     }
 
     public void add(Experience experience) {
+        if (this.resume == null) {
+            return;
+        }
+
         if (!this.resume.getExperiences().contains(experience)) {
             this.resume.add(experience);
         }
@@ -54,18 +62,34 @@ public abstract class Consumer implements Comparator<Consumer> {
     }
 
     public boolean remove(Experience experience) {
+        if (this.resume == null) {
+            return false;
+        }
+
         return this.resume.remove(experience);
     }
 
     public boolean remove(Education education) {
+        if (this.resume == null) {
+            return false;
+        }
+
         return this.resume.remove(education);
     }
 
     public boolean modify(Experience experience) {
+        if (this.resume == null) {
+            return false;
+        }
+
         return this.resume.modify(experience);
     }
 
     public boolean modify(Education education) {
+        if (this.resume == null) {
+            return false;
+        }
+
         return this.resume.modify(education);
     }
 
@@ -163,6 +187,15 @@ public abstract class Consumer implements Comparator<Consumer> {
                 .compareTo(o2.getResume().getInformation().getEmail());
     }
 
+    @Override
+    public String toString() {
+        return "Consumer{ \n" +
+                "resume=" + resume +
+                ",\n friends=" + friends +
+                "\n}";
+    }
+
+    //###################################################
     public static class Resume {
         private Information information;
         private ArrayList<Education> educations;
@@ -259,9 +292,9 @@ public abstract class Consumer implements Comparator<Consumer> {
         @Override
         public String toString() {
             return "Resume{" +
-                    "information=" + information +
-                    ", educations=" + educations +
-                    ", experiences=" + experiences +
+                    "information=" + information.toString() +
+                    ", educations=" + educations.toString() +
+                    ", experiences=" + experiences.toString() +
                     '}';
         }
 
