@@ -1,16 +1,16 @@
 package com.pachetepachete.Models;
 
 public class Employee extends Consumer {
-    private String companie;
+    private Company companie;
     private int salariu;
 
-    public Employee(String companie, int salariu) {
+    public Employee(Company companie, int salariu) {
         super();
         this.companie = companie;
         this.salariu = salariu;
     }
 
-    public Employee(Consumer consumer, String companie, int salariu) {
+    public Employee(Consumer consumer, Company companie, int salariu) {
         super(consumer);
         this.companie = companie;
         this.salariu = salariu;
@@ -25,16 +25,16 @@ public class Employee extends Consumer {
         this.salariu = salariu;
     }
 
-    public Employee(String companie) {
+    public Employee(Company companie) {
         super();
         this.companie = companie;
     }
 
-    public String getCompanie() {
+    public Company getCompanie() {
         return companie;
     }
 
-    public void setCompanie(String companie) {
+    public void setCompanie(Company companie) {
         this.companie = companie;
     }
 
