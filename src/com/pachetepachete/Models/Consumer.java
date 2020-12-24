@@ -14,6 +14,27 @@ public abstract class Consumer implements Comparator<Consumer> {
         this.friends = new ArrayList<>();
     }
 
+    public Consumer(Consumer consumer) {
+        this.resume = consumer.resume;
+        this.friends = consumer.friends;
+    }
+
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
+
+    public ArrayList<Consumer> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList<Consumer> friends) {
+        this.friends = friends;
+    }
+
     public void add(Education education) {
         if (!this.resume.getEducations().contains(education)) {
             this.resume.add(education);
@@ -60,7 +81,7 @@ public abstract class Consumer implements Comparator<Consumer> {
             visited.add(con);
             queue.pollFirst();
 
-            if (compare(con, consumer) == 0) {
+            if (con == consumer || compare(con, consumer) == 0) {
                 return lvl;
             }
 
@@ -99,7 +120,7 @@ public abstract class Consumer implements Comparator<Consumer> {
 
     public Double meanGPA() {
         if (this.resume.getEducations() == null) {
-            return -1.0;
+            return 0.0;
         }
 
         double sum = 0.0;
@@ -122,6 +143,24 @@ public abstract class Consumer implements Comparator<Consumer> {
 
         return sum / counter;
 
+    }
+
+    @Override
+    public int compare(Consumer o1, Consumer o2) {
+        if (o1 == o2 || (o1.getResume() == null && o2.getResume() == null)) {
+            return 0;
+        }
+
+        if (o1.getResume() == null || o1.getResume().getInformation() == null) {
+            return 1;
+        }
+
+        if (o2.getResume() == null || o2.getResume().getInformation() == null) {
+            return -1;
+        }
+
+        return o1.getResume().getInformation().getEmail()
+                .compareTo(o2.getResume().getInformation().getEmail());
     }
 
     public static class Resume {

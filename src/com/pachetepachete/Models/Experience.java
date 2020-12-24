@@ -1,6 +1,7 @@
 package com.pachetepachete.Models;
 
 import com.pachetepachete.Exceptions.InvalidDatesException;
+import com.pachetepachete.utils.Xerox;
 
 import java.util.Date;
 
@@ -12,7 +13,7 @@ public class Experience extends Xerox implements Comparable<Experience> {
 
     public Experience(Date start, Date end, String pozitie, String companie) throws InvalidDatesException {
         try {
-            if (end.before(start)) {
+            if (end.before(start) || start == null) {
                 throw new InvalidDatesException("Date de sfarsit este mai mica ca cea de inceput! INVALID!");
             }
         } catch (InvalidDatesException e) {
