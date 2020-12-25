@@ -1,6 +1,10 @@
 package com.pachetepachete.Models;
 
+import com.pachetepachete.Application;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Manager extends Employee {
     private ArrayList<Request<Job, Consumer>> requests;
@@ -44,8 +48,33 @@ public class Manager extends Employee {
         }
     }
 
-    //TODO: De terminat
     public void process(Job job) {
+        Collections.sort(this.requests);
 
+        for (Request<Job, Consumer> request : this.requests) {
+            if (request.getKey() == job) {
+                if (job.isOpened()) {
+                    if (job.getNoPositions() != 0) {
+                        if (Application.getInstance().contains((User) request.getValue1())) {
+                            Employee employee = ((User) request.getValue1()).convert();
+                            employee.setSalariu(job.getSalary());
+                            this.getCompanie().add(employee, job.getDepartment());
+                            Application.getInstance().remove((User) request.getValue1());
+                            job.setNoPositions(job.getNoPositions() - 1);
+
+                            if (job.getNoPositions() == 0) {
+                                job.setOpened(false);
+                            }
+                        }
+                    } else {
+                        job.setOpened(false);
+                    }
+                }
+
+                this.requests.remove(request);
+            }
+        }
+
+        job.setOpened(false);
     }
 }

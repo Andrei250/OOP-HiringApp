@@ -13,8 +13,32 @@ public class Job {
     private int noPositions;
     private int salary;
     private ArrayList<Constraint> constraints;
+    private Department department;
 
-    public Job(String name, Company company, boolean isOpened, int noPositions, int salary, ArrayList<Constraint> constraints) {
+    public Job(String name,
+               Company company,
+               boolean isOpened,
+               ArrayList<User> persons,
+               int noPositions,
+               int salary,
+               ArrayList<Constraint> constraints,
+               Department department) {
+        this.name = name;
+        this.company = company;
+        this.isOpened = isOpened;
+        this.persons = persons;
+        this.noPositions = noPositions;
+        this.salary = salary;
+        this.constraints = constraints;
+        this.department = department;
+    }
+
+    public Job(String name,
+               Company company,
+               boolean isOpened,
+               int noPositions,
+               int salary,
+               ArrayList<Constraint> constraints) {
         this.name = name;
         this.company = company;
         this.isOpened = isOpened;
@@ -23,12 +47,24 @@ public class Job {
         this.constraints = constraints;
     }
 
-    public Job(String name, Company company, boolean isOpened, int noPositions, int salary) {
+    public Job(String name,
+               Company company,
+               boolean isOpened,
+               int noPositions,
+               int salary) {
         this.name = name;
         this.company = company;
         this.isOpened = isOpened;
         this.noPositions = noPositions;
         this.salary = salary;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getName() {

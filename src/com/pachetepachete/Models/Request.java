@@ -1,6 +1,6 @@
 package com.pachetepachete.Models;
 
-public class Request<K, V> {
+public class Request<K, V> implements Comparable<Request<K,V>> {
     private K key;
     private V value1, value2;
     private Double score;
@@ -29,6 +29,11 @@ public class Request<K, V> {
     public String toString() {
         return "Key: " + key + " ; Value1: " + value1 + " ; Value2: " + value2 +
                  " ; Score: " + score;
+    }
+
+    @Override
+    public int compareTo(Request<K, V> o) {
+        return o.getScore().compareTo(this.getScore());
     }
 }
 
