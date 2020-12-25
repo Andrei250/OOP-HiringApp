@@ -163,9 +163,15 @@ public class Company {
         int lvl = -1;
         Recruiter recruiter = null;
 
-        if (this.recruiters.size() == 0) {
-            throw new NoRecruitersException("Aceasta companie nu are inca recruiteri. Ne pare rau!");
+        try {
+            if (this.recruiters.size() == 0) {
+                throw new NoRecruitersException("Aceasta companie nu are inca recruiteri. Ne pare rau!");
+            }
+        } catch(NoRecruitersException e) {
+            e.printStackTrace();
+            return null;
         }
+
 
         for (Recruiter recruiter1 : this.recruiters) {
             int degree = user.getDegreeInFriendship(recruiter1);

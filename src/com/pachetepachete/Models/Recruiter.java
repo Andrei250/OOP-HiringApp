@@ -17,12 +17,11 @@ public class Recruiter extends Employee implements Comparable<Recruiter> {
         super(companie, salariu);
         this.rating = 5.0;
     }
-
-    //TODO: CINE CACAT E SCORUL??? si trimite request-ul
+    //TODO: de terminat
     public int evaluate(Job job, User user) {
         this.rating  = this.rating + 0.1;
 
-        new Request<Job, Consumer>(job, user, this, this.rating);
+        new Request<Job, Consumer>(job, user, this, user.getTotalScore());
 
         return 1;
     }

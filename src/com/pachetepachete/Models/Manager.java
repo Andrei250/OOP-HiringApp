@@ -1,5 +1,6 @@
 package com.pachetepachete.Models;
 
+//TODO: de terminat
 public class Manager extends Employee {
     public Manager(Company companie, int salariu) {
         super(companie, salariu);

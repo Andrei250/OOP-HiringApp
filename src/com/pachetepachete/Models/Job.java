@@ -1,8 +1,10 @@
 package com.pachetepachete.Models;
 
-import java.util.ArrayList;
+import com.pachetepachete.Exceptions.NoRecruitersException;
 
-//TODO: De terminat
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class Job {
     private String name;
     private Company company;
@@ -95,10 +97,55 @@ public class Job {
 
     public boolean remove(User user) {
         if (this.persons.contains(user)) {
-            return this.remove(user);
+            return this.persons.remove(user);
         }
 
         return false;
     }
 
+    public void apply(User user) throws NoRecruitersException {
+        if (this.persons.contains(user)) {
+            return;
+        }
+
+        Recruiter recruiter = company.getRecruiter(user);
+
+        if (recruiter == null) {
+            return;
+        }
+
+        recruiter.evaluate(this, user);
+    }
+
+    public boolean meetsRequirments(User user) {
+        int educationEnd = user.getGraduationYear();
+        int experienceYears = 0;
+        Double GPA = user.meanGPA();
+
+        experienceYears = user.getYearOfExperience(experienceYears, Calendar.getInstance());
+
+        if (this.constraints.size() == 0) {
+            return true;
+        }
+
+        if (this.constraints.get(0).getEnd() < educationEnd) {
+            return false;
+        }
+
+        if (this.constraints.size() == 1) {
+            return true;
+        }
+
+        if (this.constraints.get(1).getStart() > experienceYears ||
+                this.constraints.get(1).getEnd() < experienceYears) {
+            return false;
+        }
+
+        if (this.constraints.size() == 2) {
+            return true;
+        }
+
+        return !(this.constraints.get(2).getStart() > experienceYears) &&
+                !(this.constraints.get(2).getEnd() < experienceYears);
+    }
 }

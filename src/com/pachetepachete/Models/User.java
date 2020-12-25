@@ -19,7 +19,14 @@ public class User extends Consumer {
     public Double getTotalScore() {
         int exp = 0;
         Calendar calendar = Calendar.getInstance();
+        exp = getYearOfExperience(exp, calendar);
 
+        double GPA = this.meanGPA();
+
+        return exp * 1.5 + GPA;
+    }
+
+    public int getYearOfExperience(int exp, Calendar calendar) {
         for (Experience experience : this.getResume().getExperiences()) {
             if (experience.getEnd() == null) {
                 if (!experience.getStart().after(new Date())) {
@@ -29,10 +36,7 @@ public class User extends Consumer {
                 exp = getExp(exp, calendar, experience, experience.getEnd());
             }
         }
-
-        double GPA = this.meanGPA();
-
-        return exp * 1.5 + GPA;
+        return exp;
     }
 
     private int getExp(int exp, Calendar calendar, Experience experience, Date end) {

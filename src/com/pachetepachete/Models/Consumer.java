@@ -136,10 +136,13 @@ public abstract class Consumer implements Comparator<Consumer> {
             }
         } catch (UnknownEndDateException e) {
             e.printStackTrace();
+            return -1;
         }
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(ed.getEnd());
 
-        return ed.getEnd().getYear();
+        return calendar.get(Calendar.YEAR);
     }
 
     public Double meanGPA() {
@@ -163,6 +166,7 @@ public abstract class Consumer implements Comparator<Consumer> {
             }
         } catch (InvalidGPAException e) {
             e.printStackTrace();
+            return -1.0;
         }
 
         return sum / counter;
