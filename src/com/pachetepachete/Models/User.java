@@ -1,18 +1,43 @@
 package com.pachetepachete.Models;
 
+import com.pachetepachete.utils.ObserverJob;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class User extends Consumer {
+public class User extends Consumer implements ObserverJob {
+    private ArrayList<Job> jobs;
+
     public User() {
         super();
+        this.jobs = new ArrayList<>();
+    }
+
+    @Override
+    public void update(String message) {
+        this.addNotification(new Notification(message));
     }
 
     public Employee convert() {
         return new Employee(this, null, 0);
+    }
+
+    public ArrayList<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(ArrayList<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    public void add(Job job) {
+        if (!this.jobs.contains(job)) {
+            this.jobs.add(job);
+        }
     }
 
     public Double getTotalScore() {

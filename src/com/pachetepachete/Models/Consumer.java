@@ -9,14 +9,30 @@ import java.util.*;
 public abstract class Consumer implements Comparator<Consumer> {
     private Resume resume;
     private ArrayList<Consumer> friends;
+    private ArrayList<Notification> notifications;
 
     public Consumer() {
         this.friends = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public Consumer(Consumer consumer) {
         this.resume = consumer.resume;
         this.friends = consumer.friends;
+        this.notifications = consumer.notifications;
+    }
+
+    public void addNotification(Notification notification) {
+        if (!this.notifications.contains(notification)) {
+
+            for (Notification notification1 : this.notifications) {
+                if (notification.getMessage().equals(notification1.getMessage())) {
+                    return;
+                }
+            }
+
+            this.notifications.add(notification);
+        }
     }
 
     public Resume getResume() {

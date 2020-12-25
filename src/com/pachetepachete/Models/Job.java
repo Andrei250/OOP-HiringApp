@@ -1,11 +1,12 @@
 package com.pachetepachete.Models;
 
 import com.pachetepachete.Exceptions.NoRecruitersException;
+import com.pachetepachete.utils.Subject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Job {
+public class Job extends Subject {
     private String name;
     private Company company;
     private boolean isOpened;
@@ -23,6 +24,7 @@ public class Job {
                int salary,
                ArrayList<Constraint> constraints,
                Department department) {
+        super();
         this.name = name;
         this.company = company;
         this.isOpened = isOpened;
@@ -39,6 +41,7 @@ public class Job {
                int noPositions,
                int salary,
                ArrayList<Constraint> constraints) {
+        super();
         this.name = name;
         this.company = company;
         this.isOpened = isOpened;
@@ -52,6 +55,7 @@ public class Job {
                boolean isOpened,
                int noPositions,
                int salary) {
+        super();
         this.name = name;
         this.company = company;
         this.isOpened = isOpened;
@@ -89,6 +93,12 @@ public class Job {
 
     public void setOpened(boolean opened) {
         isOpened = opened;
+
+        if (!opened) {
+            notifyAllObserverOfCanceling("Jobul " + this.getName() + " s-a inchis. Daca se va schimba ceva, te vom anunta!");
+        } else {
+            notifyAllObserverOfCanceling("Jobul " + this.getName() + " s-a deschis. Aplica cat de repede poti!");
+        }
     }
 
     public ArrayList<User> getPersons() {
@@ -125,6 +135,8 @@ public class Job {
 
     public boolean add(User user) {
         if (!this.persons.contains(user)) {
+            this.attach(user);
+            user.add(this);
             return this.persons.add(user);
         }
 

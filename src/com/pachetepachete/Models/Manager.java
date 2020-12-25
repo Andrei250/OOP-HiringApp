@@ -61,6 +61,11 @@ public class Manager extends Employee {
                             this.getCompanie().add(employee, job.getDepartment());
                             Application.getInstance().remove((User) request.getValue1());
                             job.setNoPositions(job.getNoPositions() - 1);
+                            job.notifyOneObserver((User) request.getValue1(), "Felicitari, ai fost acceptat pentru jobul " + job.getName());
+
+                            for (Job job1 : ((User) request.getValue1()).getJobs()) {
+                                job1.dettach((User) request.getValue1());
+                            }
 
                             if (job.getNoPositions() == 0) {
                                 job.setOpened(false);
