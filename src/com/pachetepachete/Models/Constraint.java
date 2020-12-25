@@ -26,4 +26,9 @@ public class Constraint {
     public void setEnd(double end) {
         this.end = end;
     }
+
+    @Override
+    public String toString() {
+        return "Contrangerea incepe de la " + start + " pana la " + end + ".\n";
+    }
 }

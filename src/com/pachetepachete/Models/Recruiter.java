@@ -33,4 +33,11 @@ public class Recruiter extends Employee implements Comparable<Recruiter> {
     public int compareTo(Recruiter o) {
         return o.rating.compareTo(this.rating);
     }
+
+    @Override
+    public String toString() {
+        return "Recruiter " + super.toString() +
+                " cu raitingul " + rating +
+                ".\n";
+    }
 }

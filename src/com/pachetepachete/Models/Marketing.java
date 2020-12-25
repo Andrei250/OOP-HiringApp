@@ -26,4 +26,9 @@ public class Marketing extends Department {
 
         return sum;
     }
+
+    @Override
+    public String toString() {
+        return "Marketing " + super.toString();
+    }
 }

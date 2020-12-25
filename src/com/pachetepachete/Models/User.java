@@ -83,6 +83,7 @@ public class User extends Consumer implements ObserverJob {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Userul care a aplciat la joburile:\n" +
+                jobs + "\n" + super.toString() + '\n';
     }
 }

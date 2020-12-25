@@ -31,4 +31,9 @@ public class IT extends Department {
 
         return sum;
     }
+
+    @Override
+    public String toString() {
+        return "IT: " + super.toString();
+    }
 }

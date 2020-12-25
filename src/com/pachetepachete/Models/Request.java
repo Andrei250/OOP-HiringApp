@@ -28,12 +28,14 @@ public class Request<K, V> implements Comparable<Request<K,V>> {
 
     public String toString() {
         return "Key: " + key + " ; Value1: " + value1 + " ; Value2: " + value2 +
-                 " ; Score: " + score;
+                 " : Score: " + score;
     }
 
     @Override
     public int compareTo(Request<K, V> o) {
         return o.getScore().compareTo(this.getScore());
     }
+
+
 }
 

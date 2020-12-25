@@ -91,13 +91,13 @@ public class Education extends Xerox implements Comparable<Education> {
 
     @Override
     public String toString() {
-        return "Education{" +
-                "start=" + start +
-                ", end=" + end +
-                ", institutie='" + institutie + '\'' +
-                ", nivelEducatie='" + nivelEducatie + '\'' +
-                ", medie=" + medie +
-                '}';
+        return "Education incepand de la" +
+                " " + start +
+                " pana la " + end +
+                " din institutia " + institutie +
+                " cu  nivelul de educatie=" + nivelEducatie +
+                " si media " + medie +
+                '\n';
     }
 
     @Override

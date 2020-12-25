@@ -101,4 +101,12 @@ public class Application {
 
         return ans;
     }
+
+    @Override
+    public String toString() {
+        return "Application; " +
+                " companies: \n" + companies +
+                "\n users: \n" + users +
+                '\n';
+    }
 }

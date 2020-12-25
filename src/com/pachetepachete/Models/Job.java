@@ -196,4 +196,17 @@ public class Job extends Subject {
         return !(this.constraints.get(2).getStart() > experienceYears) &&
                 !(this.constraints.get(2).getEnd() < experienceYears);
     }
+
+    @Override
+    public String toString() {
+        return "Jobul cu numele " + name +
+                " din compania " + company.getName() +
+                " care deschis/inchis: " + isOpened +
+                " cu persoanele: \n" + persons +
+                "\n  cu " + noPositions +
+                " pozitii libere si salariul " + salary +
+                " si constrangerile: \n" + constraints +
+                "\n din departamentul: " + department +
+                '\n';
+    }
 }

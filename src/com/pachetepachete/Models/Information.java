@@ -109,14 +109,14 @@ public class Information {
 
     @Override
     public String toString() {
-        return "Information{" +
-                "nume='" + nume + '\'' +
-                ", prenume='" + prenume + '\'' +
-                ", email='" + email + '\'' +
-                ", telefon='" + telefon + '\'' +
-                ", data_nastere=" + data_nastere +
-                ", sex='" + sex + '\'' +
-                ", languages=" + languages +
-                '}';
+        return "Information: \n" +
+                " Numele: " + nume +
+                "\n Prenumele: " + prenume +
+                "\n Email: " + email +
+                "\n Telefonul: " + telefon +
+                "\n Data Nastere: " + data_nastere +
+                "\n Sexul: " + sex +
+                "\n Limbi cunoscute: " + languages +
+                '\n';
     }
 }

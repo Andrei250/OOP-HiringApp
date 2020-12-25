@@ -49,4 +49,11 @@ public abstract class Department {
         this.availableJobs.remove(job);
     }
 
+    @Override
+    public String toString() {
+        return "Departmentul cu " +
+                "employees: \n" + employees +
+                "si joburile valabile: \n" + availableJobs +
+                '\n';
+    }
 }

@@ -195,4 +195,12 @@ public class Company {
         return recruiter;
     }
 
+    @Override
+    public String toString() {
+        return "Compania " + name + "cu managerul: " +
+                " " + manager +
+                " si departamentele: \n" + departments +
+                "Recruiters: \n" + recruiters +
+                "\n";
+    }
 }

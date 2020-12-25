@@ -80,12 +80,11 @@ public class Experience extends Xerox implements Comparable<Experience> {
 
     @Override
     public String toString() {
-        return "Experience{" +
-                "start=" + start +
-                ", end=" + end +
-                ", pozitie='" + pozitie + '\'' +
-                ", companie='" + companie + '\'' +
-                '}';
+        return "Experienta de la " + start +
+                " pana la end " + end +
+                " ocupand pozitia " + pozitie +
+                " din compania" + companie +
+                '\n';
     }
 
     @Override

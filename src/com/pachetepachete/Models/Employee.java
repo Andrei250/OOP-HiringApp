@@ -48,6 +48,10 @@ public class Employee extends Consumer {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Angajatul din compania " + companie.getName() +
+                " si cu ca salariul " + salariu +
+                " si resumeul " + this.getResume() +
+                ",\n si prietenii: \n" + this.getFriends() +
+                "\n";
     }
 }

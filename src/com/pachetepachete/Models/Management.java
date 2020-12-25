@@ -31,4 +31,9 @@ public class Management extends Department {
 
         return sum;
     }
+
+    @Override
+    public String toString() {
+        return "Management " + super.toString();
+    }
 }

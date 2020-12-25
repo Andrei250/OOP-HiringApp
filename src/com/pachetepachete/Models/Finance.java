@@ -36,4 +36,9 @@ public class Finance extends Department {
 
         return sum;
     }
+
+    @Override
+    public String toString() {
+        return "Finance " + super.toString();
+    }
 }

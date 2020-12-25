@@ -82,4 +82,11 @@ public class Manager extends Employee {
 
         job.setOpened(false);
     }
+
+    @Override
+    public String toString() {
+        return "Manager " + super.toString() +
+                "\n cu cererile " + requests +
+                '\n';
+    }
 }

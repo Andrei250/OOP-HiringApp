@@ -209,13 +209,12 @@ public abstract class Consumer implements Comparator<Consumer> {
 
     @Override
     public String toString() {
-        return "Consumer{ \n" +
-                "resume=" + resume +
-                ",\n friends=" + friends +
-                "\n}";
+        return "Consumer:  \n" +
+                "cu resumeul " + resume +
+                ",\n si prietenii: \n" + friends +
+                "\n";
     }
 
-    //###################################################
     public static class Resume {
         private Information information;
         private ArrayList<Education> educations;
@@ -311,11 +310,11 @@ public abstract class Consumer implements Comparator<Consumer> {
 
         @Override
         public String toString() {
-            return "Resume{" +
-                    "information=" + information.toString() +
-                    ", educations=" + educations.toString() +
-                    ", experiences=" + experiences.toString() +
-                    '}';
+            return "Resume cu " +
+                    "informatii: \n" + information.toString() +
+                    "si educatiile: \n" + educations.toString() +
+                    "si experientele: \n" + experiences.toString() +
+                    "\n";
         }
 
         public static class ResumeBuilder {
