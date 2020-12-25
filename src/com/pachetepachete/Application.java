@@ -79,13 +79,26 @@ public class Application {
         return this.users.contains(user);
     }
 
+    private Company findByName(String name) {
+        for (Company company : this.companies) {
+            if (company.getName().compareTo(name) == 0) {
+                return company;
+            }
+        }
 
-//TODO : de terminat asta
-//    public ArrayList<Job> getJobs(List<String> companies) {
-//        ArrayList<Job> ans = new ArrayList<>();
-//
-//        for (String st : companies) {
-//
-//        }
-//    }
+        return null;
+    }
+
+    public ArrayList<Job> getJobs(List<String> companies) {
+        ArrayList<Job> ans = new ArrayList<>();
+
+        for (String st : companies) {
+            Company company = findByName(st);
+            if (company != null) {
+                ans.addAll(company.getJobs());
+            }
+        }
+
+        return ans;
+    }
 }
