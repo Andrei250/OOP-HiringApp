@@ -17,12 +17,15 @@ public class Recruiter extends Employee implements Comparable<Recruiter> {
         super(companie, salariu);
         this.rating = 5.0;
     }
-    //TODO: de terminat
+
     public int evaluate(Job job, User user) {
         this.rating  = this.rating + 0.1;
 
-        new Request<Job, Consumer>(job, user, this, user.getTotalScore());
+        if (!job.meetsRequirments(user)) {
+            return 0;
+        }
 
+        job.getCompany().getManager().add(new Request<Job, Consumer>(job, user, this, user.getTotalScore()));
         return 1;
     }
 

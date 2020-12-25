@@ -11,9 +11,8 @@ public class User extends Consumer {
         super();
     }
 
-    //TODO : de modificat la final cu firma si salariul
     public Employee convert() {
-        return new Employee(this, new Company("Bloomberg", new Manager()), 120);
+        return new Employee(this, null, 0);
     }
 
     public Double getTotalScore() {
