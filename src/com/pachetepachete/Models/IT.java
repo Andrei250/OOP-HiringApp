@@ -5,6 +5,7 @@ public class IT extends Department {
 
     public IT() {
         super();
+        this.tax = 0.0;
     }
 
     public IT(double tax) {

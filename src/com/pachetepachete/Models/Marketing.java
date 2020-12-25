@@ -10,6 +10,7 @@ public class Marketing extends Department {
 
     public Marketing() {
         super();
+        this.tax = 0.1;
     }
 
     @Override

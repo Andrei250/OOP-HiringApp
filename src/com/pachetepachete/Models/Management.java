@@ -5,6 +5,7 @@ public class Management extends Department {
 
     public Management() {
         super();
+        this.tax = 0.16;
     }
 
     public Management(double tax) {
