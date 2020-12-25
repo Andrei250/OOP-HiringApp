@@ -1,11 +1,11 @@
 package com.pachetepachete.Models;
 
 public class Manager extends Employee {
-    public Manager(String companie, int salariu) {
+    public Manager(Company companie, int salariu) {
         super(companie, salariu);
     }
 
-    public Manager(Consumer consumer, String companie, int salariu) {
+    public Manager(Consumer consumer, Company companie, int salariu) {
         super(consumer, companie, salariu);
     }
 
@@ -17,7 +17,7 @@ public class Manager extends Employee {
         super(salariu);
     }
 
-    public Manager(String companie) {
+    public Manager(Company companie) {
         super(companie);
     }
 

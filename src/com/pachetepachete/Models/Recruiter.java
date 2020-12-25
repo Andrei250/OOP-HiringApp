@@ -1,6 +1,6 @@
 package com.pachetepachete.Models;
 
-public class Recruiter extends Employee {
+public class Recruiter extends Employee implements Comparable<Recruiter> {
     public Double rating;
 
     public Recruiter(Company companie, int salariu, Double rating) {
@@ -25,5 +25,10 @@ public class Recruiter extends Employee {
         new Request<Job, Consumer>(job, user, this, this.rating);
 
         return 1;
+    }
+
+    @Override
+    public int compareTo(Recruiter o) {
+        return o.rating.compareTo(this.rating);
     }
 }

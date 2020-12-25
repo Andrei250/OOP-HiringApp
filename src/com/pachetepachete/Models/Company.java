@@ -1,6 +1,10 @@
 package com.pachetepachete.Models;
 
+import com.pachetepachete.Exceptions.NoRecruitersException;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Company {
     private String name;
@@ -85,6 +89,7 @@ public class Company {
 
     public void remove(Recruiter recruiter) {
         this.recruiters.remove(recruiter);
+        Collections.sort(this.recruiters);
     }
 
     public void move(Department source, Department destination) {
@@ -140,5 +145,46 @@ public class Company {
         return this.recruiters.contains(recruiter);
     }
 
+    public ArrayList<Job> getJobs() {
+        ArrayList<Job> ans = new ArrayList<>();
+
+        for (Department department : this.departments) {
+            for (Job job : department.getJobs()) {
+                if (job.isOpened()) {
+                    ans.add(job);
+                }
+            }
+        }
+
+        return ans;
+    }
+
+    public Recruiter getRecruiter(User user) throws NoRecruitersException {
+        int lvl = -1;
+        Recruiter recruiter = null;
+
+        if (this.recruiters.size() == 0) {
+            throw new NoRecruitersException("Aceasta companie nu are inca recruiteri. Ne pare rau!");
+        }
+
+        for (Recruiter recruiter1 : this.recruiters) {
+            int degree = user.getDegreeInFriendship(recruiter1);
+
+            if (degree > lvl) {
+                lvl = degree;
+                recruiter = recruiter1;
+            } else if (degree == lvl && degree != -1) {
+                if (recruiter.rating < recruiter1.rating) {
+                    recruiter = recruiter1;
+                }
+            }
+        }
+
+        if (lvl == -1) {
+            recruiter = this.recruiters.get(0);
+        }
+
+        return recruiter;
+    }
 
 }
