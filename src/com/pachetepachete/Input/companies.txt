@@ -1,0 +1,15 @@
+create
+    Bloomberg
+    Andrei Dumitrescu
+create
+    Google
+    Andrei Popescu
+create
+    JumpTrading
+    Augustin Dumitrescu
+create
+    Adobe Laurentiu Popa
+create
+    Intervania Nicu lautarul
+printeaza
+adauga

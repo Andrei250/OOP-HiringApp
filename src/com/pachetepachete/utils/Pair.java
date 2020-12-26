@@ -27,9 +27,6 @@ public class Pair<K, V> {
 
     @Override
     public String toString() {
-        return "Pair " +
-                " with key " + key +
-                " and value=" + value +
-                '\n';
+        return key + " - " + value + '\n';
     }
 }

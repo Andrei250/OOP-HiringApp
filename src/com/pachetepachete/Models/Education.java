@@ -14,7 +14,7 @@ public class Education extends Xerox implements Comparable<Education> {
 
     public Education(Date start, Date end, String institutie, String nivelEducatie, Double medie) throws InvalidDatesException {
         try {
-            if (end.before(start) || start == null) {
+            if ((end != null && end.before(start)) || start == null) {
                 throw new InvalidDatesException("Date de sfarsit este mai mica ca cea de inceput! INVALID!");
             }
         } catch (InvalidDatesException e) {
@@ -84,6 +84,10 @@ public class Education extends Xerox implements Comparable<Education> {
             }
 
             return o.end.compareTo(this.end);
+        } else if (this.end != null) {
+            return -1;
+        } else if (o.end != null) {
+            return 1;
         }
 
         return this.start.compareTo(o.start);

@@ -1,11 +1,16 @@
 package com.pachetepachete;
 
-import com.pachetepachete.Models.Company;
-import com.pachetepachete.Models.Job;
-import com.pachetepachete.Models.User;
+import com.pachetepachete.Exceptions.InvalidDatesException;
+import com.pachetepachete.Models.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
     private ArrayList<Company> companies;
@@ -79,7 +84,19 @@ public class Application {
         return this.users.contains(user);
     }
 
-    private Company findByName(String name) {
+    public User findByEmail(String email) {
+        for (User user : this.users) {
+            if (user.getResume().getInformation() != null) {
+                if (user.getResume().getInformation().getEmail().equals(email)) {
+                    return user;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Company findByName(String name) {
         for (Company company : this.companies) {
             if (company.getName().compareTo(name) == 0) {
                 return company;
@@ -108,5 +125,97 @@ public class Application {
                 " companies: \n" + companies +
                 "\n users: \n" + users +
                 '\n';
+    }
+
+    public void readFromFile(String path) {
+        User user = null;
+        Company company = null;
+        Manager manager = null;
+        Recruiter recruiter = null;
+        Consumer.Resume resume = null;
+
+        try {
+            File fisier = new File(path);
+            Scanner cititorDeFisiere = new Scanner(fisier);
+            Scanner wordScanner;
+            while (cititorDeFisiere.hasNextLine()) {
+                String data = cititorDeFisiere.nextLine().trim();
+                wordScanner = new Scanner(data);
+
+                while (wordScanner.hasNext()) {
+                    String word = wordScanner.next();
+
+                    if (word.equalsIgnoreCase("user")) {
+                        user = new User();
+                        application.add(user);
+                    } else if (word.equalsIgnoreCase("resume")) {
+                        resume = new Consumer.Resume.ResumeBuilder().build();
+
+                        if (user != null && user.getResume() == null) {
+                            user.setResume(resume);
+                        }
+
+                    } else if (word.equalsIgnoreCase("add")) {
+                        word = wordScanner.next();
+
+                        if (word.equalsIgnoreCase("information")) {
+                            String nume = cititorDeFisiere.nextLine().trim();
+                            String prenume = cititorDeFisiere.nextLine().trim();
+                            String email = cititorDeFisiere.nextLine().trim();
+                            String telefon = cititorDeFisiere.nextLine().trim();
+                            Date data_nastere = new SimpleDateFormat("dd/MM/yyyy").parse(cititorDeFisiere.nextLine().trim());
+                            String sex = cititorDeFisiere.nextLine().trim();
+
+                            if (application.findByEmail(email) == null && data_nastere != null && user != null && user.getResume() != null) {
+                                user.getResume().setInformation(new Information(nume, prenume, email, telefon, data_nastere, sex));
+                            }
+                        } else if (word.equalsIgnoreCase("limba")) {
+                            String language = wordScanner.next().trim();
+                            String lvl = wordScanner.next().trim();
+
+                            if (lvl.equalsIgnoreCase("BEGINNER") || lvl.equalsIgnoreCase("EXPERIENCED") || lvl.equalsIgnoreCase("ADVANCED")) {
+                                if (user != null && user.getResume() != null && user.getResume().getInformation() != null) {
+                                    user.getResume().getInformation().addNewLanguage(language, lvl);
+                                }
+                            }
+                        } else if (word.equalsIgnoreCase("experience")) {
+                            Date start = new SimpleDateFormat("dd/MM/yyyy").parse(cititorDeFisiere.nextLine().trim());
+                            String endDate = cititorDeFisiere.nextLine().trim();
+                            Date end = endDate.equalsIgnoreCase("null") ? null : new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+                            String position = cititorDeFisiere.nextLine().trim();
+                            String place = cititorDeFisiere.nextLine().trim();
+
+                            if (user != null && user.getResume() != null) {
+                                user.getResume().add(new Experience(start, end, position, place));
+                            }
+                        } else if (word.equalsIgnoreCase("education")) {
+                            Date start = new SimpleDateFormat("dd/MM/yyyy").parse(cititorDeFisiere.nextLine().trim());
+                            String endDate = cititorDeFisiere.nextLine().trim();
+                            Date end = endDate.equalsIgnoreCase("null") ? null : new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+                            String faculty = cititorDeFisiere.nextLine().trim();
+                            String institution = cititorDeFisiere.nextLine().trim();
+                            String gpa = cititorDeFisiere.nextLine().trim();
+                            if (gpa.equalsIgnoreCase("NULL")) {
+                                gpa = null;
+                            }
+
+                            if (user != null && user.getResume() != null) {
+                                user.getResume().add(new Education(start, end, institution, faculty, gpa != null ? Double.parseDouble(gpa) : null ));
+                            }
+                        }
+                    } else if (word.equalsIgnoreCase("print")) {
+                        System.out.println("#####################################################");
+                        System.out.println(application);
+                        System.out.println("#####################################################");
+                    }
+
+                }
+                wordScanner.close();
+            }
+            cititorDeFisiere.close();
+        } catch (FileNotFoundException | ParseException | InvalidDatesException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }

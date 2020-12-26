@@ -93,20 +93,20 @@ public abstract class Consumer implements Comparator<Consumer> {
         return this.resume.remove(education);
     }
 
-    public boolean modify(Experience experience) {
+    public boolean modify(Experience oldExperience, Experience experience) {
         if (this.resume == null) {
             return false;
         }
 
-        return this.resume.modify(experience);
+        return this.resume.modify(oldExperience, experience);
     }
 
-    public boolean modify(Education education) {
+    public boolean modify(Education oldEducation, Education education) {
         if (this.resume == null) {
             return false;
         }
 
-        return this.resume.modify(education);
+        return this.resume.modify(oldEducation, education);
     }
 
     public int getDegreeInFriendship(Consumer consumer) {
@@ -288,9 +288,9 @@ public abstract class Consumer implements Comparator<Consumer> {
             return this.experiences.remove(experience);
         }
 
-        public boolean modify(Education education) {
-            if (this.educations.contains(education)) {
-                int index = this.educations.indexOf(education);
+        public boolean modify(Education oldeducation, Education education) {
+            if (this.educations.contains(oldeducation)) {
+                int index = this.educations.indexOf(oldeducation);
                 this.educations.set(index, education.copy());
                 return true;
             }
@@ -298,9 +298,9 @@ public abstract class Consumer implements Comparator<Consumer> {
             return false;
         }
 
-        public boolean modify(Experience experience) {
-            if (this.experiences.contains(experience)) {
-                int index = this.experiences.indexOf(experience);
+        public boolean modify(Experience oldexperience, Experience experience) {
+            if (this.experiences.contains(oldexperience)) {
+                int index = this.experiences.indexOf(oldexperience);
                 this.experiences.set(index, experience.copy());
                 return true;
             }
@@ -311,9 +311,9 @@ public abstract class Consumer implements Comparator<Consumer> {
         @Override
         public String toString() {
             return "Resume cu " +
-                    "informatii: \n" + information.toString() +
-                    "si educatiile: \n" + educations.toString() +
-                    "si experientele: \n" + experiences.toString() +
+                    "informatii: \n" + information +
+                    "\n si educatiile: \n" + educations +
+                    "\n si experientele: \n" + experiences +
                     "\n";
         }
 

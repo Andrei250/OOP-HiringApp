@@ -35,6 +35,10 @@ public class Information {
         this.languages = languages;
     }
 
+    public String getFullname() {
+        return prenume + " " +  nume;
+    }
+
     public String getNume() {
         return nume;
     }

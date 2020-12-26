@@ -13,7 +13,7 @@ public class Experience extends Xerox implements Comparable<Experience> {
 
     public Experience(Date start, Date end, String pozitie, String companie) throws InvalidDatesException {
         try {
-            if (end.before(start) || start == null) {
+            if ((end != null && end.before(start)) || start == null) {
                 throw new InvalidDatesException("Date de sfarsit este mai mica ca cea de inceput! INVALID!");
             }
         } catch (InvalidDatesException e) {
@@ -73,6 +73,10 @@ public class Experience extends Xerox implements Comparable<Experience> {
             }
 
             return o.end.compareTo(this.end);
+        } else if (this.end != null) {
+            return -1;
+        } else if (o.end != null) {
+            return 1;
         }
 
         return this.start.compareTo(o.start);
@@ -80,10 +84,10 @@ public class Experience extends Xerox implements Comparable<Experience> {
 
     @Override
     public String toString() {
-        return "Experienta de la " + start +
-                " pana la end " + end +
-                " ocupand pozitia " + pozitie +
-                " din compania" + companie +
+        return "Experienta de la: " + start +
+                " pana la end: " + end +
+                " ocupand pozitia de: " + pozitie +
+                " din compania: " + companie +
                 '\n';
     }
 
