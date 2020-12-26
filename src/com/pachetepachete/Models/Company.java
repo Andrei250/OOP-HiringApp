@@ -197,8 +197,8 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Compania " + name + "cu managerul: " +
-                " " + manager +
+        return "Compania " + name + " cu managerul:" +
+                " " + manager.getResume().getInformation().getFullname() +
                 " si departamentele: \n" + departments +
                 "Recruiters: \n" + recruiters +
                 "\n";

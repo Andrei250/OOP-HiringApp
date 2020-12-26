@@ -1,15 +1,19 @@
-create
+company
     Bloomberg
-    Andrei Dumitrescu
-create
-    Google
-    Andrei Popescu
-create
-    JumpTrading
-    Augustin Dumitrescu
-create
-    Adobe Laurentiu Popa
-create
-    Intervania Nicu lautarul
-printeaza
-adauga
+    Eusebiu
+    Ghost
+    ghost@gmail.com
+    0799999999
+    11/05/1978
+    MASCULIN
+    3000000
+add department IT
+add department Finance
+add job IT
+    Software Engineer
+    true
+    10
+    3000
+    2023
+    5 10
+    7 10

@@ -17,6 +17,11 @@ public class User extends Consumer implements ObserverJob {
         this.jobs = new ArrayList<>();
     }
 
+    public User(Consumer consumer) {
+        super(consumer);
+        this.jobs = new ArrayList<>();
+    }
+
     @Override
     public void update(String message) {
         this.addNotification(new Notification(message));

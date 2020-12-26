@@ -19,7 +19,6 @@ public class Job extends Subject {
     public Job(String name,
                Company company,
                boolean isOpened,
-               ArrayList<User> persons,
                int noPositions,
                int salary,
                ArrayList<Constraint> constraints,
@@ -28,7 +27,7 @@ public class Job extends Subject {
         this.name = name;
         this.company = company;
         this.isOpened = isOpened;
-        this.persons = persons;
+        this.persons = new ArrayList<>();
         this.noPositions = noPositions;
         this.salary = salary;
         this.constraints = constraints;
@@ -48,6 +47,7 @@ public class Job extends Subject {
         this.noPositions = noPositions;
         this.salary = salary;
         this.constraints = constraints;
+        this.persons = new ArrayList<>();
     }
 
     public Job(String name,
@@ -61,6 +61,7 @@ public class Job extends Subject {
         this.isOpened = isOpened;
         this.noPositions = noPositions;
         this.salary = salary;
+        this.persons = new ArrayList<>();
     }
 
     public Department getDepartment() {

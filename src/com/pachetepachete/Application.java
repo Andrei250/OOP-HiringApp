@@ -2,6 +2,7 @@ package com.pachetepachete;
 
 import com.pachetepachete.Exceptions.InvalidDatesException;
 import com.pachetepachete.Models.*;
+import com.pachetepachete.utils.DepartmentFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -86,7 +87,7 @@ public class Application {
 
     public User findByEmail(String email) {
         for (User user : this.users) {
-            if (user.getResume().getInformation() != null) {
+            if (user.getResume() != null && user.getResume().getInformation() != null) {
                 if (user.getResume().getInformation().getEmail().equals(email)) {
                     return user;
                 }
@@ -121,7 +122,7 @@ public class Application {
 
     @Override
     public String toString() {
-        return "Application; " +
+        return "Application:\n " +
                 " companies: \n" + companies +
                 "\n users: \n" + users +
                 '\n';
@@ -159,16 +160,7 @@ public class Application {
                         word = wordScanner.next();
 
                         if (word.equalsIgnoreCase("information")) {
-                            String nume = cititorDeFisiere.nextLine().trim();
-                            String prenume = cititorDeFisiere.nextLine().trim();
-                            String email = cititorDeFisiere.nextLine().trim();
-                            String telefon = cititorDeFisiere.nextLine().trim();
-                            Date data_nastere = new SimpleDateFormat("dd/MM/yyyy").parse(cititorDeFisiere.nextLine().trim());
-                            String sex = cititorDeFisiere.nextLine().trim();
-
-                            if (application.findByEmail(email) == null && data_nastere != null && user != null && user.getResume() != null) {
-                                user.getResume().setInformation(new Information(nume, prenume, email, telefon, data_nastere, sex));
-                            }
+                            updateInfo(wordScanner, cititorDeFisiere, user);
                         } else if (word.equalsIgnoreCase("limba")) {
                             String language = wordScanner.next().trim();
                             String lvl = wordScanner.next().trim();
@@ -202,11 +194,54 @@ public class Application {
                             if (user != null && user.getResume() != null) {
                                 user.getResume().add(new Education(start, end, institution, faculty, gpa != null ? Double.parseDouble(gpa) : null ));
                             }
+                        } else if (word.equalsIgnoreCase("department")) {
+                            Department department = new DepartmentFactory().getDepartment(wordScanner.next().trim());
+
+                            if (department != null && company != null) {
+                                company.add(department);
+                            }
+                        } else if (word.equalsIgnoreCase("job")) {
+                            String departmentName = wordScanner.next().trim();
+                            Department departmentNeeded = null;
+
+                            if (company != null && company.getDepartments() != null) {
+                                for (Department department : company.getDepartments()) {
+                                    if (departmentName.equalsIgnoreCase("IT") && department instanceof IT) {
+                                        departmentNeeded = department;
+                                    } else if (departmentName.equalsIgnoreCase("Finance") && department instanceof Finance) {
+                                        departmentNeeded = department;
+                                    } else if (departmentName.equalsIgnoreCase("Marketing") && department instanceof Marketing) {
+                                        departmentNeeded = department;
+                                    } else if (departmentName.equalsIgnoreCase("Management") && department instanceof Management) {
+                                        departmentNeeded = department;
+                                    }
+                                }
+                            }
+
+
+                            Job job = getNewJob(cititorDeFisiere, company, departmentNeeded);
+
+                            if (company != null && departmentNeeded != null) {
+                                departmentNeeded.add(job);
+                            }
+
+                            System.out.println(company);
                         }
                     } else if (word.equalsIgnoreCase("print")) {
                         System.out.println("#####################################################");
                         System.out.println(application);
                         System.out.println("#####################################################");
+                    } else if (word.equalsIgnoreCase("company")) {
+                        String cmpName = cititorDeFisiere.nextLine().trim();
+                        company = new Company(cmpName, null);
+                        resume = new Consumer.Resume.ResumeBuilder().build();
+                        manager = new Manager();
+                        manager.setResume(resume);
+                        updateInfo(wordScanner, cititorDeFisiere, manager);
+                        String salary = cititorDeFisiere.nextLine().trim();
+                        manager.setSalariu(Integer.parseInt(salary));
+                        manager.setCompanie(company);
+                        company.setManager(manager);
                     }
 
                 }
@@ -217,5 +252,43 @@ public class Application {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    private void updateInfo(Scanner wordScanner, Scanner cititorDeFisiere, Consumer user) throws ParseException {
+        String nume = cititorDeFisiere.nextLine().trim();
+        String prenume = cititorDeFisiere.nextLine().trim();
+        String email = cititorDeFisiere.nextLine().trim();
+        String telefon = cititorDeFisiere.nextLine().trim();
+        Date data_nastere = new SimpleDateFormat("dd/MM/yyyy").parse(cititorDeFisiere.nextLine().trim());
+        String sex = cititorDeFisiere.nextLine().trim();
+
+        if (application.findByEmail(email) == null && data_nastere != null && user != null && user.getResume() != null) {
+            user.getResume().setInformation(new Information(nume, prenume, email, telefon, data_nastere, sex));
+        }
+    }
+
+    private Job getNewJob(Scanner scanner, Company company, Department department) {
+        String name = scanner.nextLine().trim();
+        boolean isOpened = Boolean.parseBoolean(scanner.nextLine().trim());
+        int nr = Integer.parseInt(scanner.nextLine().trim());
+        int salary = Integer.parseInt(scanner.nextLine().trim());
+        ArrayList<Constraint> constraints = new ArrayList<>();
+
+        constraints.add(getContraint(scanner));
+        constraints.add(getContraint(scanner));
+        constraints.add(getContraint(scanner));
+
+        return new Job(name, company, isOpened, nr, salary, constraints, department);
+    }
+
+    private Constraint getContraint(Scanner scanner) {
+        double start, stop;
+        String cons = scanner.nextLine().trim();
+        System.out.println(cons);
+        Scanner sn = new Scanner(cons);
+
+//        start = Double.parseDouble(sn.next().trim());
+//        stop = Double.parseDouble(sn.next().trim());
+       return new Constraint(0, 0);
     }
 }
