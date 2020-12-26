@@ -224,8 +224,16 @@ public class Application {
                             if (company != null && departmentNeeded != null) {
                                 departmentNeeded.add(job);
                             }
-
-                            System.out.println(company);
+                        } else if (word.equalsIgnoreCase("recruiter")) {
+                            resume = new Consumer.Resume.ResumeBuilder().build();
+                            recruiter = new Recruiter(company, (int) 0.0);
+                            recruiter.setResume(resume);
+                            updateInfo(wordScanner, cititorDeFisiere, recruiter);
+                            int salary = Integer.parseInt(cititorDeFisiere.nextLine().trim());
+                            recruiter.setSalariu(salary);
+                            if (company != null) {
+                                company.add(recruiter);
+                            }
                         }
                     } else if (word.equalsIgnoreCase("print")) {
                         System.out.println("#####################################################");
