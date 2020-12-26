@@ -207,7 +207,6 @@ public class Job extends Subject {
                 "\n  cu " + noPositions +
                 " pozitii libere si salariul " + salary +
                 " si constrangerile: \n" + constraints +
-                "\n din departamentul: " + department +
                 '\n';
     }
 }
