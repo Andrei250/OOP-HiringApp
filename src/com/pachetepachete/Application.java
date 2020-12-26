@@ -284,11 +284,10 @@ public class Application {
     private Constraint getContraint(Scanner scanner) {
         double start, stop;
         String cons = scanner.nextLine().trim();
-        System.out.println(cons);
         Scanner sn = new Scanner(cons);
 
-//        start = Double.parseDouble(sn.next().trim());
-//        stop = Double.parseDouble(sn.next().trim());
-       return new Constraint(0, 0);
+        start = Double.parseDouble(sn.next().trim());
+        stop = Double.parseDouble(sn.next().trim());
+        return new Constraint(start, stop);
     }
 }
