@@ -250,6 +250,7 @@ public class Application {
                         manager.setSalariu(Integer.parseInt(salary));
                         manager.setCompanie(company);
                         company.setManager(manager);
+                        this.add(company);
                     }
 
                 }

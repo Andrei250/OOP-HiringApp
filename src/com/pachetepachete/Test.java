@@ -15,5 +15,6 @@ public class Test {
         Application application = Application.getInstance();
         application.readFromFile("./src/com/pachetepachete/Input/users.txt");
         application.readFromFile("./src/com/pachetepachete/Input/companies.txt");
+        application.readFromFile("./src/com/pachetepachete/Input/actions.txt");
     }
 }

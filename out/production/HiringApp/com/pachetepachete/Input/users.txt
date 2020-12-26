@@ -1,6 +1,6 @@
 user
-resumeM
-add informationM
+resume
+add information
     Nicusor
     Dan
     dannicusor12@gmail.com
