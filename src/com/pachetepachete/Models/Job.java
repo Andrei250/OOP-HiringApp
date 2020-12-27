@@ -6,23 +6,24 @@ import com.pachetepachete.utils.Subject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+//TODO: numele companiei si departamentul
 public class Job extends Subject {
     private String name;
-    private Company company;
+    private String company;
     private boolean isOpened;
     private ArrayList<User> persons;
     private int noPositions;
     private int salary;
     private ArrayList<Constraint> constraints;
-    private Department department;
+    private String department;
 
     public Job(String name,
-               Company company,
+               String company,
                boolean isOpened,
                int noPositions,
                int salary,
                ArrayList<Constraint> constraints,
-               Department department) {
+               String department) {
         super();
         this.name = name;
         this.company = company;
@@ -35,7 +36,7 @@ public class Job extends Subject {
     }
 
     public Job(String name,
-               Company company,
+               String company,
                boolean isOpened,
                int noPositions,
                int salary,
@@ -51,7 +52,7 @@ public class Job extends Subject {
     }
 
     public Job(String name,
-               Company company,
+               String company,
                boolean isOpened,
                int noPositions,
                int salary) {
@@ -64,27 +65,27 @@ public class Job extends Subject {
         this.persons = new ArrayList<>();
     }
 
-    public Department getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(String department) {
         this.department = department;
     }
 
     public String getName() {
         return name;
-    }
+    }Company
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Company getCompany() {
+    public String getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
+    public void setCompany(String company) {
         this.company = company;
     }
 

@@ -251,6 +251,8 @@ public class Application {
                         manager.setCompanie(company);
                         company.setManager(manager);
                         this.add(company);
+                    } else if (word.equalsIgnoreCase("apply")) {
+
                     }
 
                 }
