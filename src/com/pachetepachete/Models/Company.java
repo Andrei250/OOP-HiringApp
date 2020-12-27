@@ -64,6 +64,10 @@ public class Company {
     }
 
     public void add(Employee employee, Department department) {
+        if (department == null) {
+            return;
+        }
+
         employee.setCompanie(this);
 
         if (!this.departments.contains(department)) {

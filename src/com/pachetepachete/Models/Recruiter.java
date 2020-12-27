@@ -24,9 +24,13 @@ public class Recruiter extends Employee implements Comparable<Recruiter> {
         if (!job.meetsRequirments(user)) {
             return 0;
         }
+        Company company = job.getCompanyByName();
+        if (company != null) {
+            company.getManager().add(new Request<Job, Consumer>(job, user, this, user.getTotalScore()));
+            return 1;
+        }
 
-        job.getCompany().getManager().add(new Request<Job, Consumer>(job, user, this, user.getTotalScore()));
-        return 1;
+        return 0;
     }
 
     @Override

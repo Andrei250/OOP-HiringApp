@@ -58,7 +58,7 @@ public class Manager extends Employee {
                         if (Application.getInstance().contains((User) request.getValue1())) {
                             Employee employee = ((User) request.getValue1()).convert();
                             employee.setSalariu(job.getSalary());
-                            this.getCompanie().add(employee, job.getDepartment());
+                            this.getCompanie().add(employee, job.findDepartment());
                             Application.getInstance().remove((User) request.getValue1());
                             job.setNoPositions(job.getNoPositions() - 1);
                             job.notifyOneObserver((User) request.getValue1(), "Felicitari, ai fost acceptat pentru jobul " + job.getName());

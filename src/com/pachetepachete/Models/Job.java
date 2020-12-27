@@ -1,5 +1,6 @@
 package com.pachetepachete.Models;
 
+import com.pachetepachete.Application;
 import com.pachetepachete.Exceptions.NoRecruitersException;
 import com.pachetepachete.utils.Subject;
 
@@ -75,7 +76,7 @@ public class Job extends Subject {
 
     public String getName() {
         return name;
-    }Company
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -135,6 +136,30 @@ public class Job extends Subject {
         this.constraints = constraints;
     }
 
+    public Company getCompanyByName() {
+        return Application.getInstance().findByName(company);
+    }
+
+    public Department findDepartment() {
+        Company cmp = getCompanyByName();
+
+        if (cmp != null && cmp.getDepartments() != null) {
+            for (Department department1 : cmp.getDepartments()) {
+                if (department.equalsIgnoreCase("IT") && department1 instanceof IT) {
+                    return department1;
+                } else if (department.equalsIgnoreCase("Finance") && department1 instanceof Finance) {
+                    return department1;
+                } else if (department.equalsIgnoreCase("Marketing") && department1 instanceof Marketing) {
+                    return department1;
+                } else if (department.equalsIgnoreCase("Management") && department1 instanceof Management) {
+                    return department1;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public boolean add(User user) {
         if (!this.persons.contains(user)) {
             this.attach(user);
@@ -157,8 +182,9 @@ public class Job extends Subject {
         if (this.persons.contains(user)) {
             return;
         }
+        Company cmp = Application.getInstance().findByName(company);
 
-        Recruiter recruiter = company.getRecruiter(user);
+        Recruiter recruiter = cmp.getRecruiter(user);
 
         if (recruiter == null) {
             return;
@@ -202,7 +228,7 @@ public class Job extends Subject {
     @Override
     public String toString() {
         return "Jobul cu numele " + name +
-                " din compania " + company.getName() +
+                " din compania " + company +
                 " care deschis/inchis: " + isOpened +
                 " cu persoanele: \n" + persons +
                 "\n  cu " + noPositions +

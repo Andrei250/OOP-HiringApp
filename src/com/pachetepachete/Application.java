@@ -218,8 +218,7 @@ public class Application {
                                 }
                             }
 
-
-                            Job job = getNewJob(cititorDeFisiere, company, departmentNeeded);
+                            Job job = getNewJob(cititorDeFisiere, company, departmentName);
 
                             if (company != null && departmentNeeded != null) {
                                 departmentNeeded.add(job);
@@ -278,7 +277,7 @@ public class Application {
         }
     }
 
-    private Job getNewJob(Scanner scanner, Company company, Department department) {
+    private Job getNewJob(Scanner scanner, Company company, String department) {
         String name = scanner.nextLine().trim();
         boolean isOpened = Boolean.parseBoolean(scanner.nextLine().trim());
         int nr = Integer.parseInt(scanner.nextLine().trim());
@@ -289,7 +288,7 @@ public class Application {
         constraints.add(getContraint(scanner));
         constraints.add(getContraint(scanner));
 
-        return new Job(name, company, isOpened, nr, salary, constraints, department);
+        return new Job(name, company.getName(), isOpened, nr, salary, constraints, department);
     }
 
     private Constraint getContraint(Scanner scanner) {
