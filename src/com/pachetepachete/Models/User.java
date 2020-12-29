@@ -88,7 +88,10 @@ public class User extends Consumer implements ObserverJob {
 
     @Override
     public String toString() {
-        return "Userul care a aplciat la joburile:\n" +
-                jobs + "\n" + super.toString() + '\n';
+        if (this.getResume() != null && this.getResume().getInformation() != null) {
+            return this.getResume().getInformation().getFullname();
+        }
+
+        return "";
     }
 }

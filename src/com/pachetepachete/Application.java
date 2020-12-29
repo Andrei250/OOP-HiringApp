@@ -300,4 +300,17 @@ public class Application {
         stop = Double.parseDouble(sn.next().trim());
         return new Constraint(start, stop);
     }
+
+    public String getDepartmentName(Department department) {
+        if (department instanceof IT) {
+            return "IT";
+        } else if (department instanceof Finance) {
+            return "Finance";
+        } else if (department instanceof Marketing) {
+            return "Marketing";
+        } else if (department instanceof Management) {
+            return "Management";
+        }
+        return "";
+    }
 }
