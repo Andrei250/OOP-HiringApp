@@ -1,5 +1,6 @@
-package com.pachetepachete;
+package com.pachetepachete.Views;
 
+import com.pachetepachete.Application;
 import com.pachetepachete.Models.*;
 
 import javax.swing.*;

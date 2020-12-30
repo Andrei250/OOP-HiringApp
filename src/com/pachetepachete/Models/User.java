@@ -2,9 +2,6 @@ package com.pachetepachete.Models;
 
 import com.pachetepachete.utils.ObserverJob;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

@@ -1,8 +1,9 @@
 package com.pachetepachete;
 
-import com.pachetepachete.AdminPanel;
+import com.pachetepachete.Views.AdminPanel;
 import com.pachetepachete.Exceptions.InvalidDatesException;
 import com.pachetepachete.Models.*;
+import com.pachetepachete.Views.ProfilePage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,8 +79,8 @@ public class TryApp {
 
         application.readFromFile("./src/com/pachetepachete/Input/companies.txt");
 
-        AdminPanel adminPanel = new AdminPanel();
-
+//        AdminPanel adminPanel = new AdminPanel();
+        ProfilePage profilePage = new ProfilePage();
     }
 
     public static void createAndAddInfo(String name, String prenume, String email, String phone, String date, String sex, User user) throws ParseException {
