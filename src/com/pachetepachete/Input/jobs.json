@@ -1,0 +1,100 @@
+{
+    "jobs" : [
+      {
+        "company" : "Google",
+        "name" : "Software Developer Engineer",
+        "department" : "IT",
+        "constraints" : [
+          {
+            "name" : "graduation",
+            "start" : 2002,
+            "end" : 2020
+          },
+          {
+            "name" : "experience",
+            "start" : 2,
+            "end" : 6
+          },
+          {
+            "name" : "average",
+            "start" : 8,
+            "end" : null
+          }
+        ],
+        "salary" : 30000,
+        "noPositions" : 15
+      },
+      {
+        "company" : "Google",
+        "name" : "Software Developer Engineer Intern",
+        "department" : "IT",
+        "constraints" : [
+          {
+            "name" : "graduation",
+            "start" : null,
+            "end" : null
+          },
+          {
+            "name" : "experience",
+            "start" : 0,
+            "end" : 2
+          },
+          {
+            "name" : "average",
+            "start" : 9,
+            "end" : null
+          }
+        ],
+        "salary" : 20000,
+        "noPositions" : 10
+      },
+      {
+        "company" : "Amazon",
+        "name" : "Software Developer Engineer",
+        "department" : "IT",
+        "constraints" : [
+          {
+            "name" : "graduation",
+            "start" : 2014,
+            "end" : 2020
+          },
+          {
+            "name" : "experience",
+            "start" : 1,
+            "end" : null
+          },
+          {
+            "name" : "average",
+            "start" : 9,
+            "end" : null
+          }
+        ],
+        "salary" : 30000,
+        "noPositions" : 15
+      },
+      {
+        "company" : "Amazon",
+        "name" : "Software Developer Engineer Intern",
+        "department" : "IT",
+        "constraints" : [
+          {
+            "name" : "graduation",
+            "start" : null,
+            "end" : null
+          },
+          {
+            "name" : "experience",
+            "start" : 0,
+            "end" : 2
+          },
+          {
+            "name" : "average",
+            "start" : 9.35,
+            "end" : null
+          }
+        ],
+        "salary" : 20000,
+        "noPositions" : 10
+      }
+    ]
+}
