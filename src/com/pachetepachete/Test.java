@@ -19,7 +19,9 @@ public class Test {
 //        application.readFromFile("./src/com/pachetepachete/Input/users.txt");
 //        application.readFromFile("./src/com/pachetepachete/Input/companies.txt");
 //        application.readFromFile("./src/com/pachetepachete/Input/actions.txt");
-        readController.readJSON("./src/com/pachetepachete/Input/consumers.json");
+        readController.readJSONCompanies("./src/com/pachetepachete/Input/companies.json");
+        readController.readJSONJobs("./src/com/pachetepachete/Input/jobs.json");
+        readController.readJSONConsumers("./src/com/pachetepachete/Input/consumers.json");
 
     }
 }

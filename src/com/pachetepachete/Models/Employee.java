@@ -1,16 +1,24 @@
 package com.pachetepachete.Models;
 
 public class Employee extends Consumer {
-    private Company companie;
+    private String companie;
     private int salariu;
+    private String department;
 
-    public Employee(Company companie, int salariu) {
+    public Employee(String companie, int salariu, String department) {
+        super();
+        this.companie = companie;
+        this.salariu = salariu;
+        this.department = department;
+    }
+
+    public Employee(String companie, int salariu) {
         super();
         this.companie = companie;
         this.salariu = salariu;
     }
 
-    public Employee(Consumer consumer, Company companie, int salariu) {
+    public Employee(Consumer consumer, String companie, int salariu) {
         super(consumer);
         this.companie = companie;
         this.salariu = salariu;
@@ -25,16 +33,24 @@ public class Employee extends Consumer {
         this.salariu = salariu;
     }
 
-    public Employee(Company companie) {
+    public Employee(String companie) {
         super();
         this.companie = companie;
     }
 
-    public Company getCompanie() {
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getCompanie() {
         return companie;
     }
 
-    public void setCompanie(Company companie) {
+    public void setCompanie(String companie) {
         this.companie = companie;
     }
 
@@ -48,7 +64,7 @@ public class Employee extends Consumer {
 
     @Override
     public String toString() {
-        return "Angajatul din compania " + companie.getName() +
+        return "Angajatul din compania " + companie +
                 " si cu ca salariul " + salariu +
                 " si resumeul " + this.getResume() +
                 ",\n si prietenii: \n" + this.getFriends() +

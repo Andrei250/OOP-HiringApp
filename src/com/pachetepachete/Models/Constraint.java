@@ -3,27 +3,27 @@ package com.pachetepachete.Models;
 import java.util.Date;
 
 public class Constraint {
-    private double start;
-    private double end;
+    private Double start;
+    private Double end;
 
-    public Constraint(double start, double end) {
+    public Constraint(Double start, Double end) {
         this.start = start;
         this.end = end;
     }
 
-    public double getStart() {
+    public Double getStart() {
         return start;
     }
 
-    public void setStart(double start) {
+    public void setStart(Double start) {
         this.start = start;
     }
 
-    public double getEnd() {
+    public Double getEnd() {
         return end;
     }
 
-    public void setEnd(double end) {
+    public void setEnd(Double end) {
         this.end = end;
     }
 

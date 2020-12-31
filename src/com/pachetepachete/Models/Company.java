@@ -68,7 +68,7 @@ public class Company {
             return;
         }
 
-        employee.setCompanie(this);
+        employee.setCompanie(this.getName());
 
         if (!this.departments.contains(department)) {
             return;
@@ -197,6 +197,22 @@ public class Company {
         }
 
         return recruiter;
+    }
+
+    public Department getDepartmentByName(String name) {
+        for (Department department : this.getDepartments()) {
+            if (name.equalsIgnoreCase("IT") && department instanceof IT) {
+                return department;
+            } else if (name.equalsIgnoreCase("Finance") && department instanceof Finance) {
+                return department;
+            } else if (name.equalsIgnoreCase("Marketing") && department instanceof Marketing) {
+                return department;
+            } else if (name.equalsIgnoreCase("Management") && department instanceof Management) {
+                return department;
+            }
+        }
+
+        return null;
     }
 
     @Override

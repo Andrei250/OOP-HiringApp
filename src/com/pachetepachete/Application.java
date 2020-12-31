@@ -122,10 +122,23 @@ public class Application {
 
     @Override
     public String toString() {
-        return "Application:\n " +
-                " companies: \n" + companies +
-                "\n users: \n" + users +
-                '\n';
+        StringBuilder ans = new StringBuilder();
+
+        ans.append("Applciation:\n");
+        ans.append("    Companies: \n");
+
+        for (Company company : this.getCompanies()) {
+            ans.append("        - ").append(company.getName()).append("\n");
+        }
+
+        ans.append("    Users: \n");
+
+        for (User user : this.getUsers()) {
+            ans.append("        ").append(user.getResume().getInformation().getFullname()).append("\n");
+        }
+
+
+        return ans.toString();
     }
 
     public void readFromFile(String path) {
@@ -225,7 +238,7 @@ public class Application {
                             }
                         } else if (word.equalsIgnoreCase("recruiter")) {
                             resume = new Consumer.Resume.ResumeBuilder().build();
-                            recruiter = new Recruiter(company, (int) 0.0);
+                            recruiter = new Recruiter(company.getName(), (int) 0.0);
                             recruiter.setResume(resume);
                             updateInfo(wordScanner, cititorDeFisiere, recruiter);
                             int salary = Integer.parseInt(cititorDeFisiere.nextLine().trim());
@@ -247,7 +260,7 @@ public class Application {
                         updateInfo(wordScanner, cititorDeFisiere, manager);
                         String salary = cititorDeFisiere.nextLine().trim();
                         manager.setSalariu(Integer.parseInt(salary));
-                        manager.setCompanie(company);
+                        manager.setCompanie(company.getName());
                         company.setManager(manager);
                         this.add(company);
                     } else if (word.equalsIgnoreCase("apply")) {
@@ -313,4 +326,5 @@ public class Application {
         }
         return "";
     }
+
 }

@@ -9,12 +9,12 @@ import java.util.Collections;
 public class Manager extends Employee {
     private ArrayList<Request<Job, Consumer>> requests;
 
-    public Manager(Company companie, int salariu) {
+    public Manager(String companie, int salariu) {
         super(companie, salariu);
         this.requests = new ArrayList<>();
     }
 
-    public Manager(Consumer consumer, Company companie, int salariu) {
+    public Manager(Consumer consumer, String companie, int salariu) {
         super(consumer, companie, salariu);
         this.requests = new ArrayList<>();
     }
@@ -29,7 +29,7 @@ public class Manager extends Employee {
         this.requests = new ArrayList<>();
     }
 
-    public Manager(Company companie) {
+    public Manager(String companie) {
         super(companie);
         this.requests = new ArrayList<>();
     }
@@ -58,7 +58,8 @@ public class Manager extends Employee {
                         if (Application.getInstance().contains((User) request.getValue1())) {
                             Employee employee = ((User) request.getValue1()).convert();
                             employee.setSalariu(job.getSalary());
-                            this.getCompanie().add(employee, job.findDepartment());
+                            Company cmp = Application.getInstance().getCompany(this.getCompanie());
+                            cmp.add(employee, job.findDepartment());
                             Application.getInstance().remove((User) request.getValue1());
                             job.setNoPositions(job.getNoPositions() - 1);
                             job.notifyOneObserver((User) request.getValue1(), "Felicitari, ai fost acceptat pentru jobul " + job.getName());

@@ -3,18 +3,23 @@ package com.pachetepachete.Models;
 public class Recruiter extends Employee implements Comparable<Recruiter> {
     public Double rating;
 
-    public Recruiter(Company companie, int salariu, Double rating) {
+    public Recruiter(String companie, int salariu, Double rating) {
         super(companie, salariu);
         this.rating = rating;
     }
 
-    public Recruiter(Consumer consumer, Company companie, int salariu, Double rating) {
+    public Recruiter(Consumer consumer, String companie, int salariu, Double rating) {
         super(consumer, companie, salariu);
         this.rating = rating;
     }
 
-    public Recruiter(Company companie, int salariu) {
+    public Recruiter(String companie, int salariu) {
         super(companie, salariu);
+        this.rating = 5.0;
+    }
+
+    public Recruiter(Consumer consumer, String companie, int salariu) {
+        super(consumer, companie, salariu);
         this.rating = 5.0;
     }
 
