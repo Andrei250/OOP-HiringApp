@@ -97,7 +97,7 @@ public class Application {
         return null;
     }
 
-    public Company findByName(String name) {
+    public Company getCompany(String name) {
         for (Company company : this.companies) {
             if (company.getName().compareTo(name) == 0) {
                 return company;
@@ -111,7 +111,7 @@ public class Application {
         ArrayList<Job> ans = new ArrayList<>();
 
         for (String st : companies) {
-            Company company = findByName(st);
+            Company company = getCompany(st);
             if (company != null) {
                 ans.addAll(company.getJobs());
             }

@@ -19,8 +19,10 @@ public class Marketing extends Department {
 
         for (Employee emp : this.getEmployees()) {
             sum = sum + (1.0 * emp.getSalariu());
-            if (emp.getSalariu() > 3000) {
-                sum = sum - this.tax * emp.getSalariu();
+            if (emp.getSalariu() > 5000) {
+                sum = sum - 0.1 * emp.getSalariu();
+            } else if (emp.getSalariu() >= 3000) {
+                sum = sum - 0.16 * emp.getSalariu();
             }
         }
 

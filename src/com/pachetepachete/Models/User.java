@@ -8,15 +8,26 @@ import java.util.Date;
 
 public class User extends Consumer implements ObserverJob {
     private ArrayList<Job> jobs;
+    private ArrayList<String> following;
 
     public User() {
         super();
         this.jobs = new ArrayList<>();
+        this.following = new ArrayList<>();
     }
 
     public User(Consumer consumer) {
         super(consumer);
         this.jobs = new ArrayList<>();
+        this.following = new ArrayList<>();
+    }
+
+    public ArrayList<String> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(ArrayList<String> following) {
+        this.following = following;
     }
 
     @Override

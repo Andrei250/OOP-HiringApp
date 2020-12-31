@@ -1,5 +1,6 @@
 package com.pachetepachete;
 
+import com.pachetepachete.Controllers.ReadController;
 import com.pachetepachete.Exceptions.InvalidDatesException;
 import com.pachetepachete.Models.*;
 
@@ -13,8 +14,12 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) throws InvalidDatesException {
         Application application = Application.getInstance();
-        application.readFromFile("./src/com/pachetepachete/Input/users.txt");
-        application.readFromFile("./src/com/pachetepachete/Input/companies.txt");
-        application.readFromFile("./src/com/pachetepachete/Input/actions.txt");
+        ReadController readController = ReadController.getInstance();
+
+//        application.readFromFile("./src/com/pachetepachete/Input/users.txt");
+//        application.readFromFile("./src/com/pachetepachete/Input/companies.txt");
+//        application.readFromFile("./src/com/pachetepachete/Input/actions.txt");
+        readController.readJSON("./src/com/pachetepachete/Input/consumers.json");
+
     }
 }

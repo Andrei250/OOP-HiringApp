@@ -7,7 +7,6 @@ import com.pachetepachete.utils.Subject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-//TODO: numele companiei si departamentul
 public class Job extends Subject {
     private String name;
     private String company;
@@ -137,7 +136,7 @@ public class Job extends Subject {
     }
 
     public Company getCompanyByName() {
-        return Application.getInstance().findByName(company);
+        return Application.getInstance().getCompany(company);
     }
 
     public Department findDepartment() {
@@ -182,7 +181,7 @@ public class Job extends Subject {
         if (this.persons.contains(user)) {
             return;
         }
-        Company cmp = Application.getInstance().findByName(company);
+        Company cmp = Application.getInstance().getCompany(company);
 
         Recruiter recruiter = cmp.getRecruiter(user);
 

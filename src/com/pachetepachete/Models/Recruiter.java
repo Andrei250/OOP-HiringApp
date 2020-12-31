@@ -19,15 +19,14 @@ public class Recruiter extends Employee implements Comparable<Recruiter> {
     }
 
     public int evaluate(Job job, User user) {
-        this.rating  = this.rating + 0.1;
-
         if (!job.meetsRequirments(user)) {
             return 0;
         }
         Company company = job.getCompanyByName();
         if (company != null) {
-            company.getManager().add(new Request<Job, Consumer>(job, user, this, user.getTotalScore()));
-            return 1;
+            company.getManager().add(new Request<Job, Consumer>(job, user, this, user.getTotalScore() * this.rating));
+            this.rating  = this.rating + 0.1;
+            return (int) (user.getTotalScore() * this.rating);
         }
 
         return 0;
