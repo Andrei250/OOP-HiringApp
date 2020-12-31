@@ -22,6 +22,7 @@ public class Test {
         readController.readJSONCompanies("./src/com/pachetepachete/Input/companies.json");
         readController.readJSONJobs("./src/com/pachetepachete/Input/jobs.json");
         readController.readJSONConsumers("./src/com/pachetepachete/Input/consumers.json");
+        readController.readJSONSocial("./src/com/pachetepachete/Input/connections.json");
 
     }
 }

@@ -327,4 +327,30 @@ public class Application {
         return "";
     }
 
+    public Consumer getConsumerByEmail(String email) {
+        for (User user : this.getUsers()) {
+            if (user.getResume().getInformation().getEmail().equalsIgnoreCase(email)) {
+                return user;
+            }
+        }
+
+        for (Company company : this.getCompanies()) {
+            for (Recruiter recruiter : company.getRecruiters()) {
+                if (recruiter.getResume().getInformation().getEmail().equalsIgnoreCase(email)) {
+                    return recruiter;
+                }
+            }
+
+            for (Department department : company.getDepartments()) {
+                for (Employee employee : department.getEmployees()) {
+                    if (employee.getResume().getInformation().getEmail().equalsIgnoreCase(email)) {
+                        return employee;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
 }

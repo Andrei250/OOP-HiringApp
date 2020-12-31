@@ -209,10 +209,11 @@ public abstract class Consumer implements Comparator<Consumer> {
 
     @Override
     public String toString() {
-        return "Consumer:  \n" +
-                "cu resumeul " + resume +
-                ",\n si prietenii: \n" + friends +
-                "\n";
+        if (this.getResume() != null && this.getResume().getInformation() != null) {
+            return this.getResume().getInformation().getFullname();
+        }
+
+        return "";
     }
 
     public static class Resume {

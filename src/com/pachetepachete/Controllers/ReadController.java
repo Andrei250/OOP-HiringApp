@@ -301,10 +301,14 @@ public class ReadController {
         try {
             Object obj = parser.parse(new FileReader(path));
             JSONObject jsonObject = (JSONObject) obj;
-            JSONArray companies = (JSONArray) jsonObject.get("companies");
+            JSONArray social = (JSONArray) jsonObject.get("connections");
 
-            for (JSONObject company : (Iterable<JSONObject>) companies) {
+            for (JSONObject connection : (Iterable<JSONObject>) social) {
+                Consumer cons1 = application.getConsumerByEmail((String) connection.get("from"));
+                Consumer cons2 = application.getConsumerByEmail((String) connection.get("to"));
 
+                cons1.add(cons2);
+                cons2.add(cons1);
             }
 
 

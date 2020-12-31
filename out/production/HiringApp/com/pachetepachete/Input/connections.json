@@ -1,8 +1,52 @@
 {
   "connections" : [
     {
-      "from": "",
-      "to": ""
+      "from": "dedmund@gmail.com",
+      "to": "jmatvei@gmail.com"
+    },
+    {
+      "from": "thaci@gmail.com",
+      "to": "lspartak@gmail.com"
+    },
+    {
+      "from": "dedmund@gmail.com",
+      "to": "leylas@gmail.com"
+    },
+    {
+      "from": "jmatvei@gmail.com",
+      "to": "stewardg@gmail.com"
+    },
+    {
+      "from": "jphilip@gmail.com",
+      "to": "jmatvei@gmail.com"
+    },
+    {
+      "from": "thaci@gmail.com",
+      "to": "leylas@gmail.com"
+    },
+    {
+      "from": "lspartak@gmail.com",
+      "to": "brysonr@gmail.com"
+    },
+    {
+      "from": "shanad@gmail.com",
+      "to": "brysonr@gmail.com"
+    },
+    {
+      "from": "shanad@gmail.com",
+      "to": "dlillie@amazon.com"
+    },
+    {
+      "from": "leylas@gmail.com",
+      "to": "jwoody@gmail.com"
+    },
+    {
+      "from": "leylas@gmail.com",
+      "to": "rollandly@gmail.com"
+    },
+    {
+      "from": "rollandly@gmail.com",
+      "to": "dbodhi@amazon.com"
     }
   ]
 }
