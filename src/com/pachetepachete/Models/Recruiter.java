@@ -44,7 +44,7 @@ public class Recruiter extends Employee implements Comparable<Recruiter> {
 
     @Override
     public String toString() {
-        return "Recruiter " + super.toString() +
+        return "Recruiter " + this.getResume().getInformation().getFullname() +
                 " cu raitingul " + rating +
                 ".\n";
     }

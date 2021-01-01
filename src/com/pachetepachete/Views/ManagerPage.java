@@ -1,4 +1,10 @@
 package com.pachetepachete.Views;
 
-public class ManagerPage {
+import javax.swing.*;
+
+public class ManagerPage extends JFrame {
+
+    public ManagerPage() {
+
+    }
 }

@@ -2,17 +2,13 @@ package com.pachetepachete;
 
 import com.pachetepachete.Controllers.ReadController;
 import com.pachetepachete.Exceptions.InvalidDatesException;
-import com.pachetepachete.Models.*;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import com.pachetepachete.Exceptions.NoRecruitersException;
+import com.pachetepachete.Models.Company;
+import com.pachetepachete.Models.Job;
+import com.pachetepachete.Models.User;
 
 public class Test {
-    public static void main(String[] args) throws InvalidDatesException {
+    public static void main(String[] args) throws InvalidDatesException, NoRecruitersException {
         Application application = Application.getInstance();
         ReadController readController = ReadController.getInstance();
 
@@ -23,6 +19,20 @@ public class Test {
         readController.readJSONJobs("./src/com/pachetepachete/Input/jobs.json");
         readController.readJSONConsumers("./src/com/pachetepachete/Input/consumers.json");
         readController.readJSONSocial("./src/com/pachetepachete/Input/connections.json");
+
+        for (User user : application.getUsers()) {
+            for (String cmp : user.getFollowing()) {
+                Company company = application.getCompany(cmp);
+
+                for (Job job : company.getJobs()) {
+                    job.apply(user);
+                }
+            }
+        }
+
+        for (Company company : application.getCompanies()) {
+            System.out.println(company.getManager().getRequests());
+        }
 
     }
 }

@@ -203,7 +203,8 @@ public class Job extends Subject {
             return true;
         }
 
-        if (this.constraints.get(0).getEnd() < educationEnd) {
+        if ((this.constraints.get(0).getEnd() != null && this.constraints.get(0).getEnd() < educationEnd) ||
+                (this.constraints.get(0).getStart() != null && this.constraints.get(0).getStart() > educationEnd)) {
             return false;
         }
 
@@ -211,8 +212,8 @@ public class Job extends Subject {
             return true;
         }
 
-        if (this.constraints.get(1).getStart() > experienceYears ||
-                this.constraints.get(1).getEnd() < experienceYears) {
+        if ((this.constraints.get(1).getEnd() != null && this.constraints.get(1).getEnd() < experienceYears) ||
+                (this.constraints.get(1).getStart() != null && this.constraints.get(1).getStart() > experienceYears)) {
             return false;
         }
 
@@ -220,8 +221,8 @@ public class Job extends Subject {
             return true;
         }
 
-        return !(this.constraints.get(2).getStart() > experienceYears) &&
-                !(this.constraints.get(2).getEnd() < experienceYears);
+        return (this.constraints.get(2).getEnd() == null || this.constraints.get(2).getEnd() >= GPA) &&
+                (this.constraints.get(2).getStart() == null || this.constraints.get(2).getStart() <= GPA);
     }
 
     @Override
