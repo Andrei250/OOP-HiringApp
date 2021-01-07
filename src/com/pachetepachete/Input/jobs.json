@@ -21,8 +21,8 @@
             "end" : null
           }
         ],
-        "salary" : 3000,
-        "noPositions" : 15
+        "salary" : 10000,
+        "noPositions" : 1
       },
       {
         "company" : "Google",
@@ -45,8 +45,8 @@
             "end" : null
           }
         ],
-        "salary" : 2000,
-        "noPositions" : 10
+        "salary" : 5000,
+        "noPositions" : 1
       },
       {
         "company" : "Amazon",
@@ -69,8 +69,8 @@
             "end" : null
           }
         ],
-        "salary" : 3000,
-        "noPositions" : 15
+        "salary" : 12000,
+        "noPositions" : 1
       },
       {
         "company" : "Amazon",
@@ -93,8 +93,8 @@
             "end" : null
           }
         ],
-        "salary" : 2000,
-        "noPositions" : 10
+        "salary" : 6000,
+        "noPositions" : 1
       }
     ]
 }

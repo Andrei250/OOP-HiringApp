@@ -353,4 +353,20 @@ public class Application {
         return null;
     }
 
+    public static Department getIfDepartmentExists(String departmentName, ArrayList<Department> departments) {
+        for (Department department : departments) {
+            if (departmentName.equalsIgnoreCase("IT") && department instanceof IT) {
+                return department;
+            } else if (departmentName.equalsIgnoreCase("Finance") && department instanceof Finance) {
+                return department;
+            } else if (departmentName.equalsIgnoreCase("Marketing") && department instanceof Marketing) {
+                return department;
+            } else if (departmentName.equalsIgnoreCase("Management") && department instanceof Management) {
+                return department;
+            }
+        }
+
+        return null;
+    }
+
 }

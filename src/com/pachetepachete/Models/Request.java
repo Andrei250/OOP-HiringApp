@@ -26,9 +26,11 @@ public class Request<K, V> implements Comparable<Request<K,V>> {
         return score;
     }
 
+    //TODO: change
     public String toString() {
-        return "Key: " + key + " ; Value1: " + value1 + " ; Value2: " + value2 +
-                 " : Score: " + score;
+//        return "Key: " + key + " ; Value1: " + value1 + " ; Value2: " + value2 +
+//                 " : Score: " + score;
+        return ((Consumer) value1).getResume().getInformation().getFullname();
     }
 
     @Override

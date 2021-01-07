@@ -45,6 +45,7 @@ public class Manager extends Employee {
     public void add(Request<Job, Consumer> request) {
         if (!this.requests.contains(request)) {
             this.requests.add(request);
+            Collections.sort(this.requests);
         }
     }
 

@@ -1,5 +1,6 @@
 package com.pachetepachete.Models;
 
+import com.pachetepachete.Application;
 import com.pachetepachete.Exceptions.NoRecruitersException;
 
 import java.util.ArrayList;
@@ -60,6 +61,12 @@ public class Company {
     public void add(Recruiter recruiter) {
         if (!this.recruiters.contains(recruiter)) {
             this.recruiters.add(recruiter);
+
+            if (getDepartmentByName("IT") != null) {
+                this.add(new IT());
+                getDepartmentByName("IT").add(recruiter);
+            }
+
         }
     }
 
@@ -200,19 +207,7 @@ public class Company {
     }
 
     public Department getDepartmentByName(String name) {
-        for (Department department : this.getDepartments()) {
-            if (name.equalsIgnoreCase("IT") && department instanceof IT) {
-                return department;
-            } else if (name.equalsIgnoreCase("Finance") && department instanceof Finance) {
-                return department;
-            } else if (name.equalsIgnoreCase("Marketing") && department instanceof Marketing) {
-                return department;
-            } else if (name.equalsIgnoreCase("Management") && department instanceof Management) {
-                return department;
-            }
-        }
-
-        return null;
+        return Application.getIfDepartmentExists(name, this.getDepartments());
     }
 
     @Override

@@ -30,9 +30,5 @@ public class Test {
             }
         }
 
-        for (Company company : application.getCompanies()) {
-            System.out.println(company.getManager().getRequests());
-        }
-
     }
 }

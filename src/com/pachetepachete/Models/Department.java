@@ -45,6 +45,16 @@ public abstract class Department {
         }
     }
 
+    public Job findJobByName(String name) {
+        for (Job job : getJobs()) {
+            if (job.getName().equalsIgnoreCase(name)) {
+                return job;
+            }
+        }
+
+        return null;
+    }
+
     public void remove(Job job) {
         this.availableJobs.remove(job);
     }

@@ -54,7 +54,10 @@ public class ReadController {
                     Department toAdd = factory.getDepartment(department);
 
                     if (toAdd != null) {
-                        departments.add(toAdd);
+
+                        if (Application.getIfDepartmentExists(department, departments) == null) {
+                            departments.add(toAdd);
+                        }
                     }
                 }
 
