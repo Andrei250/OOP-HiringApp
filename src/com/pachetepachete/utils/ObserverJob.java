@@ -5,5 +5,5 @@ import com.pachetepachete.Models.Notification;
 import java.util.ArrayList;
 
 public interface ObserverJob {
-    public  void update(String message);
+    void update(String message);
 }
