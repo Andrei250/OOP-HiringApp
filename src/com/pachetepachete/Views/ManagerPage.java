@@ -10,15 +10,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Vector;
 
-public class ManagerPage extends JFrame {
+public class ManagerPage {
+    JPanel panel;
 
     public ManagerPage(Manager manager) {
-        super("Manager Page");
-        setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(1000, 400));
-        getContentPane().setBackground(Color.blue);
-        setLayout(new FlowLayout());
+        panel = new JPanel();
 
+        panel.setLayout(new FlowLayout());
         String[] colNames = {"Nume", "Email", "Scor", "Departament", "Job", "Accept", "Reject"};
 
         Vector<Object[]> objects = new Vector<>();
@@ -85,8 +83,14 @@ public class ManagerPage extends JFrame {
         table.setPreferredScrollableViewportSize(new Dimension(700, 400));
 
         JScrollPane scrollable = new JScrollPane(table);
-        add(scrollable);
-        show();
-        pack();
+        panel.add(scrollable);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
     }
 }

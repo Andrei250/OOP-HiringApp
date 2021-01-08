@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ProfilePage extends JFrame implements ActionListener {
+public class ProfilePage implements ActionListener {
     JScrollPane jScrollPane;
     JPanel bigBox;
     JPanel antet;
@@ -20,15 +20,11 @@ public class ProfilePage extends JFrame implements ActionListener {
     JTextField prenume;
     JButton search;
     JTextArea ans;
+    JPanel panel;
 
     public ProfilePage() {
-        super("Profile Page");
-        setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(700, 400));
-        getContentPane().setBackground(Color.blue);
-        setLayout(new FlowLayout());
-        show();
-        pack();
+        panel = new JPanel();
+        panel.setLayout(new FlowLayout());
 
         bigBox = new JPanel(new BorderLayout());
         antet = new JPanel(new FlowLayout());
@@ -50,9 +46,8 @@ public class ProfilePage extends JFrame implements ActionListener {
         ans.setEditable(false);
         info.add(jScrollPane);
         bigBox.add(info, BorderLayout.CENTER);
-        add(bigBox);
+        panel.add(bigBox);
         bigBox.revalidate();
-
     }
 
     @Override
@@ -87,6 +82,13 @@ public class ProfilePage extends JFrame implements ActionListener {
             builder.append("################################\n");
         }
         ans.setText(builder.toString());
+    }
 
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
     }
 }

@@ -1,5 +1,6 @@
 package com.pachetepachete;
 
+import com.pachetepachete.Controllers.ApplicationController;
 import com.pachetepachete.Exceptions.InvalidDatesException;
 import com.pachetepachete.Exceptions.NoRecruitersException;
 import com.pachetepachete.Models.*;
@@ -82,7 +83,8 @@ public class TryApp {
 //        AdminPanel adminPanel = new AdminPanel();
 //        ProfilePage profilePage = new ProfilePage();
         Test.main(new String[]{});
-        ManagerPage managerPage = new ManagerPage(application.getCompany("Amazon").getManager());
+//        ManagerPage managerPage = new ManagerPage(application.getCompany("Amazon").getManager());
+        new ApplicationController();
     }
 
     public static void createAndAddInfo(String name, String prenume, String email, String phone, String date, String sex, User user) throws ParseException {

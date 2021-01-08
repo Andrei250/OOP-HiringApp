@@ -12,7 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class AdminPanel extends JFrame implements ListSelectionListener, ActionListener {
+public class AdminPanel implements ListSelectionListener, ActionListener {
+    JPanel panel;
     JList<Company> companyJList;
     JList<User> userJList;
     JButton button;
@@ -23,25 +24,18 @@ public class AdminPanel extends JFrame implements ListSelectionListener, ActionL
 
 
     public AdminPanel() {
-        super("Admin Panel");
-        setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(700, 400));
-        getContentPane().setBackground(Color.blue);
-        GridLayout gridLayout = new GridLayout(2, 1);
-        gridLayout.setHgap(5);
-        gridLayout.setVgap(5);
-        setLayout(new FlowLayout());
+        panel = new JPanel();
 
+        panel.setLayout(new FlowLayout());
         button = new JButton("Calculeaza salariile");
         button.setEnabled(false);
         button.addActionListener(this);
-        add(button);
+        panel.add(button);
 
         GridLayout gridLayout1 = new GridLayout(0, 3);
         gridLayout1.setHgap(5);
         gridLayout1.setVgap(5);
         p = new JPanel(gridLayout1);
-
 
         Application application = Application.getInstance();
 
@@ -68,9 +62,11 @@ public class AdminPanel extends JFrame implements ListSelectionListener, ActionL
         jt = new JTree(node);
         JScrollPane jScrollPane = new JScrollPane(jt);
         p.add(jt);
-        add(p);
-        show();
-        pack();
+        panel.add(p);
+    }
+
+    public JPanel getPanel() {
+        return panel;
     }
 
     public JTree getTree(Company company) {
