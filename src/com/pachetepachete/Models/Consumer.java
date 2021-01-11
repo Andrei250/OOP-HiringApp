@@ -216,6 +216,19 @@ public abstract class Consumer implements Comparator<Consumer> {
         return "";
     }
 
+    public String getAllNotifications() {
+        StringBuilder ans = new StringBuilder();
+
+        ans.append("Notificari: \n");
+
+        for (Notification notification : notifications) {
+            ans.append("\t").append(notification).append("\n");
+        }
+
+        return ans.toString();
+    }
+
+
     public static class Resume {
         private Information information;
         private ArrayList<Education> educations;

@@ -106,6 +106,7 @@ public class ReadController {
 
                 if (department1 != null) {
                     department1.add(job);
+                    Application.getInstance().getCompany(job.getCompany()).notifyAllObserverOfCanceling("S-a adaugat jobul " + job.getName() + " din compania " + job.getCompany());
                 }
             }
 
@@ -212,6 +213,7 @@ public class ReadController {
 
                 for (String comp : (Iterable<String>) comps) {
                     following.add(comp);
+                    Application.getInstance().getCompany(comp).attach(user);
                 }
 
                 user.setFollowing(following);

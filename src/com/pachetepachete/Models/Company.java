@@ -2,12 +2,13 @@ package com.pachetepachete.Models;
 
 import com.pachetepachete.Application;
 import com.pachetepachete.Exceptions.NoRecruitersException;
+import com.pachetepachete.utils.Subject;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class Company {
+public class Company extends Subject {
     private String name;
     private Manager manager;
     private ArrayList<Department> departments;

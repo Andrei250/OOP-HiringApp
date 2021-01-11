@@ -12,15 +12,13 @@ public class Test {
         Application application = Application.getInstance();
         ReadController readController = ReadController.getInstance();
 
-//        application.readFromFile("./src/com/pachetepachete/Input/users.txt");
-//        application.readFromFile("./src/com/pachetepachete/Input/companies.txt");
-//        application.readFromFile("./src/com/pachetepachete/Input/actions.txt");
         readController.readJSONCompanies("./src/com/pachetepachete/Input/companies.json");
-        readController.readJSONJobs("./src/com/pachetepachete/Input/jobs.json");
         readController.readJSONConsumers("./src/com/pachetepachete/Input/consumers.json");
+        readController.readJSONJobs("./src/com/pachetepachete/Input/jobs.json");
         readController.readJSONSocial("./src/com/pachetepachete/Input/connections.json");
 
         for (User user : application.getUsers()) {
+            System.out.println(user.getAllNotifications());
             for (String cmp : user.getFollowing()) {
                 Company company = application.getCompany(cmp);
 

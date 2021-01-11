@@ -17,6 +17,6 @@ public class Notification {
 
     @Override
     public String toString() {
-        return "Notificarea cu mesajul \"" + message + "\"\n";
+        return "Notificare: " + message + "\n";
     }
 }
