@@ -49,6 +49,10 @@ public class Manager extends Employee {
         }
     }
 
+    public void remove(Request<Job, Consumer> request) {
+        this.requests.remove(request);
+    }
+
     public void process(Job job) {
         Collections.sort(this.requests);
 

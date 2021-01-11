@@ -2,6 +2,8 @@ package com.pachetepachete.Views;
 
 import com.pachetepachete.Application;
 import com.pachetepachete.Models.*;
+import com.pachetepachete.utils.ObserverFrame;
+import com.pachetepachete.utils.SubjectFrame;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -12,18 +14,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class AdminPanel implements ListSelectionListener, ActionListener {
-    JPanel panel;
-    JList<Company> companyJList;
-    JList<User> userJList;
-    JButton button;
-    JTree jt;
-    DefaultListModel<User> userDefaultListModel;
-    DefaultListModel<Company> companyDefaultListModel;
-    JPanel p;
+public class AdminPanel implements ListSelectionListener, ActionListener, ObserverFrame {
+    private JPanel panel;
+    private JList<Company> companyJList;
+    private JList<User> userJList;
+    private JButton button;
+    private JTree jt;
+    private DefaultListModel<User> userDefaultListModel;
+    private DefaultListModel<Company> companyDefaultListModel;
+    private JPanel p;
+    private SubjectFrame subjectFrame;
 
-
-    public AdminPanel() {
+    public AdminPanel(SubjectFrame subjectFrame) {
+        this.subjectFrame = subjectFrame;
         panel = new JPanel();
 
         panel.setLayout(new FlowLayout());
@@ -140,5 +143,15 @@ public class AdminPanel implements ListSelectionListener, ActionListener {
         jt = getTreeWithBudget(company);
         p.add(jt);
         p.revalidate();
+    }
+
+    @Override
+    public void update(User user) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode("Company");
+        jt = new JTree(node);
+        jt.revalidate();
+        p.add(jt);
+        p.revalidate();
+        button.setEnabled(false);
     }
 }

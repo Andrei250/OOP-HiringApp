@@ -4,6 +4,8 @@ import com.pachetepachete.Application;
 import com.pachetepachete.Models.Education;
 import com.pachetepachete.Models.Experience;
 import com.pachetepachete.Models.User;
+import com.pachetepachete.utils.ObserverFrame;
+import com.pachetepachete.utils.SubjectFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,16 +13,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ProfilePage implements ActionListener {
-    JScrollPane jScrollPane;
-    JPanel bigBox;
-    JPanel antet;
-    JPanel info;
-    JTextField nume;
-    JTextField prenume;
-    JButton search;
-    JTextArea ans;
-    JPanel panel;
+public class ProfilePage implements ActionListener{
+    private JScrollPane jScrollPane;
+    private JPanel bigBox;
+    private JPanel antet;
+    private JPanel info;
+    private JTextField nume;
+    private JTextField prenume;
+    private JButton search;
+    private JTextArea ans;
+    private JPanel panel;
 
     public ProfilePage() {
         panel = new JPanel();

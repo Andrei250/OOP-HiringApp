@@ -1,9 +1,12 @@
 package com.pachetepachete.Controllers;
 
 import com.pachetepachete.Application;
+import com.pachetepachete.Models.Manager;
+import com.pachetepachete.Models.Request;
 import com.pachetepachete.Views.AdminPanel;
 import com.pachetepachete.Views.ManagerPage;
 import com.pachetepachete.Views.ProfilePage;
+import com.pachetepachete.utils.SubjectFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +24,11 @@ public class ApplicationController extends JFrame implements ActionListener {
         setMinimumSize(new Dimension(700, 700));
         getContentPane().setBackground(Color.blue);
         setLayout(new BorderLayout());
-        AdminPanel adminPanel = new AdminPanel();
-        ManagerPage managerPanel = new ManagerPage(Application.getInstance().getCompany("Google").getManager());
+
+        Manager manager = Application.getInstance().getCompany("Google").getManager();
+        SubjectFrame subject = new SubjectFrame();
+        AdminPanel adminPanel = new AdminPanel(subject);
+        ManagerPage managerPanel = new ManagerPage(manager, subject);
         ProfilePage profilePanel = new ProfilePage();
 
         layout = new CardLayout();

@@ -2,6 +2,8 @@ package com.pachetepachete.Views;
 import com.pachetepachete.Application;
 import com.pachetepachete.Models.*;
 import com.pachetepachete.utils.ButtonRenderer;
+import com.pachetepachete.utils.ObserverFrame;
+import com.pachetepachete.utils.SubjectFrame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,10 +12,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Vector;
 
-public class ManagerPage {
+public class ManagerPage implements ObserverFrame {
     JPanel panel;
+    private SubjectFrame subjectFrame;
 
-    public ManagerPage(Manager manager) {
+    public ManagerPage(Manager manager, SubjectFrame subjectFrame) {
+        this.subjectFrame = subjectFrame;
         panel = new JPanel();
 
         panel.setLayout(new FlowLayout());
@@ -39,7 +43,17 @@ public class ManagerPage {
             {
                 JTable table = (JTable)e.getSource();
                 int row = Integer.parseInt(e.getActionCommand());
-                ((DefaultTableModel)table.getModel()).removeRow(row);
+                TableModel model = table.getModel();
+                User user = Application.getInstance().findByEmail(model.getValueAt(row, 1).toString());
+                Department department = Application.getIfDepartmentExists(model.getValueAt(row, 3).toString(),
+                        Application.getInstance().getCompany(manager.getCompanie()).getDepartments());
+                Job job = department == null ? null : department.findJobByName(model.getValueAt(row, 4).toString());
+                ((DefaultTableModel)model).removeRow(row);
+
+                if (job != null) {
+                    job.notifyOneObserver(user, "Nu ai fost acceptat!");
+                    job.dettach(user);
+                }
             }
         };
 
@@ -59,6 +73,8 @@ public class ManagerPage {
                             manager.getCompanie(),
                             job.getSalary()));
                     job.setNoPositions(job.getNoPositions() - 1);
+                    job.notifyOneObserver(user, "Ai fost acceptat");
+                    job.dettach(user);
 
                     Application.getInstance().remove(user);
 
@@ -66,6 +82,9 @@ public class ManagerPage {
                         for (int i = model.getRowCount() - 1; i >= 0; --i) {
                             ((DefaultTableModel)model).removeRow(i);
                         }
+
+                        job.notifyAllObserverOfCanceling("Nu ai fost acceptat");
+                        job.removeAll();
                     }
                 }
 
@@ -92,5 +111,16 @@ public class ManagerPage {
 
     public void setPanel(JPanel panel) {
         this.panel = panel;
+    }
+
+    @Override
+    public void update(User user) {
+        for (Company company : Application.getInstance().getCompanies()) {
+            for (Request<Job, Consumer> request : company.getManager().getRequests()) {
+                if (request.getValue1().getResume().getInformation().getEmail().equalsIgnoreCase(user.getResume().getInformation().getEmail())) {
+                    company.getManager().remove(request);
+                }
+            }
+        }
     }
 }

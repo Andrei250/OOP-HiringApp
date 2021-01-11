@@ -7,22 +7,9 @@ import java.util.ArrayList;
 
 public class SubjectFrame {
     private ArrayList<ObserverFrame> observers;
-    private static SubjectFrame subjectFrame;
 
-    private SubjectFrame() {
+    public SubjectFrame() {
         observers = new ArrayList<>();
-    }
-
-    public static SubjectFrame getInstance() {
-        if (subjectFrame == null) {
-            synchronized (SubjectFrame.class) {
-                if (subjectFrame == null) {
-                    subjectFrame = new SubjectFrame();
-                }
-            }
-        }
-
-        return subjectFrame;
     }
 
     public void attach(ObserverFrame observer) {
@@ -41,5 +28,13 @@ public class SubjectFrame {
         for (ObserverFrame observer : this.observers) {
             observer.update(user);
         }
+    }
+
+    public void removeAll() {
+        observers.removeAll(observers);
+    }
+
+    public void addAll(ArrayList<ObserverFrame> observers) {
+        this.observers.addAll(observers);
     }
 }

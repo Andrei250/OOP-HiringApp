@@ -1,8 +1,4 @@
 package com.pachetepachete.utils;
-
-import com.pachetepachete.Models.Consumer;
-import com.pachetepachete.Models.User;
-
 import java.util.ArrayList;
 
 public class Subject {
@@ -28,5 +24,9 @@ public class Subject {
 
     public void notifyOneObserver(ObserverJob observer, String message) {
         observer.update(message);
+    }
+
+    public void removeAll() {
+        observers.removeAll(observers);
     }
 }
