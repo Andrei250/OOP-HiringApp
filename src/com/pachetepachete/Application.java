@@ -125,18 +125,17 @@ public class Application {
         StringBuilder ans = new StringBuilder();
 
         ans.append("Applciation:\n");
-        ans.append("    Companies: \n");
+        ans.append("\tCompanies: \n");
 
         for (Company company : this.getCompanies()) {
-            ans.append("        - ").append(company.getName()).append("\n");
+            ans.append("\t-").append(company.toString()).append("\n");
         }
 
-        ans.append("    Users: \n");
+        ans.append("\tUsers: \n");
 
         for (User user : this.getUsers()) {
-            ans.append("        ").append(user.getResume().getInformation().getFullname()).append("\n");
+            ans.append("\t").append(user.getResume().getInformation().getFullname()).append("\n");
         }
-
 
         return ans.toString();
     }

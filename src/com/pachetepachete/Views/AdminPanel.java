@@ -16,12 +16,12 @@ import java.util.Vector;
 
 public class AdminPanel implements ListSelectionListener, ActionListener, ObserverFrame {
     private JPanel panel;
-    private JList<Company> companyJList;
+    private JList<String> companyJList;
     private JList<User> userJList;
     private JButton button;
     private JTree jt;
     private DefaultListModel<User> userDefaultListModel;
-    private DefaultListModel<Company> companyDefaultListModel;
+    private DefaultListModel<String> companyDefaultListModel;
     private JPanel p;
     private SubjectFrame subjectFrame;
 
@@ -46,7 +46,10 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
         companyDefaultListModel = new DefaultListModel<>();
         JScrollPane scrollPaneCompany = new JScrollPane();
 
-        companyDefaultListModel.addAll(application.getCompanies());
+        for (Company company : application.getCompanies()) {
+            companyDefaultListModel.addElement(company.getName());
+        }
+
         companyJList = new JList<>(companyDefaultListModel);
         scrollPaneCompany.setViewportView(companyJList);
         companyJList.setLayoutOrientation(JList.VERTICAL);
@@ -129,8 +132,8 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
             return;
         }
 
-        Company company = companyJList.getSelectedValue();
-        jt = getTree(company);
+        String company = companyJList.getSelectedValue();
+        jt = getTree(Application.getInstance().getCompany(company));
         p.add(jt);
         p.revalidate();
         button.setEnabled(true);
@@ -140,8 +143,8 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
     @Override
     public void actionPerformed(ActionEvent e) {
         p.remove(jt);
-        Company company = companyJList.getSelectedValue();
-        jt = getTreeWithBudget(company);
+        String company = companyJList.getSelectedValue();
+        jt = getTreeWithBudget(Application.getInstance().getCompany(company));
         p.add(jt);
         p.revalidate();
     }

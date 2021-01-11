@@ -212,15 +212,23 @@ public class Company {
 
     @Override
     public String toString() {
-        return name;
-    }
+        StringBuilder ans = new StringBuilder();
 
-    //    @Override
-//    public String toString() {
-//        return "Compania " + name + " cu managerul:" +
-//                " " + manager.getResume().getInformation().getFullname() +
-//                " si departamentele: \n" + departments +
-//                "Recruiters: \n" + recruiters +
-//                "\n";
-//    }
+        ans.append(name).append("\n");
+        ans.append("Manager: ").append(manager.getResume().getInformation().getFullname()).append("\n");
+
+        ans.append("Departamente: \n");
+
+        for (Department department : departments) {
+            ans.append("\t").append(department.toString()).append("\n");
+        }
+
+        ans.append("Recruiters: \n");
+
+        for (Recruiter recruiter : recruiters) {
+            ans.append("\t").append(recruiter.getResume().getInformation().getFullname()).append("\n");
+        }
+
+        return ans.toString();
+    }
 }

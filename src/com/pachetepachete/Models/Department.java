@@ -61,9 +61,22 @@ public abstract class Department {
 
     @Override
     public String toString() {
-        return "Departmentul cu " +
-                "employees: \n" + employees +
-                "si joburile valabile: \n" + availableJobs +
-                '\n';
+        StringBuilder ans = new StringBuilder();
+
+        ans.append(getClass().getSimpleName()).append(" ");
+
+        ans.append("Joburi: \n");
+
+        for (Job job : availableJobs) {
+            ans.append("\t").append(job.getName()).append("\n");
+        }
+
+        ans.append("Angajati: \n");
+
+        for (Employee employee : employees) {
+            ans.append("\t").append(employee.getResume().getInformation().getFullname()).append("\n");
+        }
+
+        return ans.toString();
     }
 }
