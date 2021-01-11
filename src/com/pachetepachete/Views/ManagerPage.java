@@ -54,25 +54,25 @@ public class ManagerPage {
                         Application.getInstance().getCompany(manager.getCompanie()).getDepartments());
                 Job job = department == null ? null : department.findJobByName(model.getValueAt(row, 4).toString());
 
-                if (department != null) {
+                if (Application.getInstance().contains(user) && job != null && job.isOpened()) {
                     department.add(new Employee(user,
                             manager.getCompanie(),
-                           job.getSalary()));
+                            job.getSalary()));
                     job.setNoPositions(job.getNoPositions() - 1);
-                }
 
-                Application.getInstance().remove(user);
+                    Application.getInstance().remove(user);
+
+                    if (job.getNoPositions() == 0) {
+                        for (int i = model.getRowCount() - 1; i >= 0; --i) {
+                            ((DefaultTableModel)model).removeRow(i);
+                        }
+                    }
+                }
 
                 for (int i = 0; i < model.getRowCount(); ++i) {
                     if (model.getValueAt(i, 1).toString().equalsIgnoreCase(user.getResume().getInformation().getEmail())) {
                         ((DefaultTableModel)model).removeRow(i);
                         i--;
-                    }
-                }
-
-                if (job != null && job.getNoPositions() == 0) {
-                    for (int i = 0; i < model.getRowCount(); ++i) {
-                        ((DefaultTableModel)model).removeRow(0);
                     }
                 }
             }

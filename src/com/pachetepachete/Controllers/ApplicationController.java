@@ -55,9 +55,9 @@ public class ApplicationController extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (((JButton) e.getSource()).getActionCommand().equals("Admin Page")) {
-            layout.show(panelsSide, "1");
-        } else if (((JButton) e.getSource()).getActionCommand().equals("Manager Page")) {
             layout.show(panelsSide, "2");
+        } else if (((JButton) e.getSource()).getActionCommand().equals("Manager Page")) {
+            layout.show(panelsSide, "1");
         } else if (((JButton) e.getSource()).getActionCommand().equals("Profile Page"))  {
             layout.show(panelsSide, "3");
         }

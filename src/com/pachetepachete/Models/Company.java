@@ -62,11 +62,11 @@ public class Company {
         if (!this.recruiters.contains(recruiter)) {
             this.recruiters.add(recruiter);
 
-            if (getDepartmentByName("IT") != null) {
+            if (getDepartmentByName("IT") == null) {
                 this.add(new IT());
-                getDepartmentByName("IT").add(recruiter);
             }
 
+            getDepartmentByName("IT").add(recruiter);
         }
     }
 
