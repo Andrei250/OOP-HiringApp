@@ -24,7 +24,7 @@ public class SubjectFrame {
         this.observers.remove(observer);
     }
 
-    public void notifyAllObserverOfCanceling(User user) {
+    public void notifyAll(User user) {
         for (ObserverFrame observer : this.observers) {
             observer.update(user);
         }

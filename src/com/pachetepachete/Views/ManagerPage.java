@@ -7,9 +7,11 @@ import com.pachetepachete.utils.SubjectFrame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class ManagerPage implements ObserverFrame {
@@ -18,6 +20,7 @@ public class ManagerPage implements ObserverFrame {
 
     public ManagerPage(Manager manager, SubjectFrame subjectFrame) {
         this.subjectFrame = subjectFrame;
+        this.subjectFrame.attach(this);
         panel = new JPanel();
 
         panel.setLayout(new FlowLayout());
@@ -35,6 +38,12 @@ public class ManagerPage implements ObserverFrame {
 
         DefaultTableModel model = new DefaultTableModel(objects.toArray(Object[][]::new), colNames);
         JTable table = new JTable(model);
+        TableColumnModel mdl = table.getColumnModel();
+
+        mdl.getColumn(4).setPreferredWidth(250);
+        mdl.getColumn(0).setPreferredWidth(100);
+        mdl.getColumn(2).setPreferredWidth(50);
+        mdl.getColumn(3).setPreferredWidth(50);
 
         Action reject = new AbstractAction()
         {
@@ -77,6 +86,7 @@ public class ManagerPage implements ObserverFrame {
                     job.dettach(user);
 
                     Application.getInstance().remove(user);
+                    subjectFrame.notifyAll(user);
 
                     if (job.getNoPositions() == 0) {
                         for (int i = model.getRowCount() - 1; i >= 0; --i) {
@@ -116,9 +126,10 @@ public class ManagerPage implements ObserverFrame {
     @Override
     public void update(User user) {
         for (Company company : Application.getInstance().getCompanies()) {
-            for (Request<Job, Consumer> request : company.getManager().getRequests()) {
-                if (request.getValue1().getResume().getInformation().getEmail().equalsIgnoreCase(user.getResume().getInformation().getEmail())) {
-                    company.getManager().remove(request);
+            ArrayList<Request<Job, Consumer>> requests = company.getManager().getRequests();
+            for (int i = 0; i < requests.size(); ++i) {
+                if (requests.get(i).getValue1().getResume().getInformation().getEmail().equalsIgnoreCase(user.getResume().getInformation().getEmail())) {
+                    company.getManager().remove(requests.get(i));
                 }
             }
         }

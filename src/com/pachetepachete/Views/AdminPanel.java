@@ -27,6 +27,7 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
 
     public AdminPanel(SubjectFrame subjectFrame) {
         this.subjectFrame = subjectFrame;
+        this.subjectFrame.attach(this);
         panel = new JPanel();
 
         panel.setLayout(new FlowLayout());
@@ -147,11 +148,13 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
 
     @Override
     public void update(User user) {
+        p.remove(jt);
         DefaultMutableTreeNode node = new DefaultMutableTreeNode("Company");
         jt = new JTree(node);
         jt.revalidate();
         p.add(jt);
         p.revalidate();
         button.setEnabled(false);
+        userDefaultListModel.removeElement(user);
     }
 }

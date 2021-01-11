@@ -21,7 +21,7 @@ public class ApplicationController extends JFrame implements ActionListener {
     public ApplicationController() {
         super("Admin Panel");
         setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(700, 700));
+        setMinimumSize(new Dimension(1000, 500));
         getContentPane().setBackground(Color.blue);
         setLayout(new BorderLayout());
 
