@@ -21,12 +21,13 @@ public class Test {
             System.out.println(user.getAllNotifications());
             for (String cmp : user.getFollowing()) {
                 Company company = application.getCompany(cmp);
-
                 for (Job job : company.getJobs()) {
                     job.apply(user);
                 }
             }
         }
+
+        System.out.println(Application.getInstance());
 
     }
 }

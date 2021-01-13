@@ -56,21 +56,21 @@ public class Manager extends Employee {
     public void process(Job job) {
         Collections.sort(this.requests);
 
-        for (Request<Job, Consumer> request : this.requests) {
-            if (request.getKey() == job) {
+        for (int i = 0; i < requests.size(); ++i) {
+            if (requests.get(i).getKey() == job) {
                 if (job.isOpened()) {
                     if (job.getNoPositions() != 0) {
-                        if (Application.getInstance().contains((User) request.getValue1())) {
-                            Employee employee = ((User) request.getValue1()).convert();
+                        if (Application.getInstance().contains((User) requests.get(i).getValue1())) {
+                            Employee employee = ((User) requests.get(i).getValue1()).convert();
                             employee.setSalariu(job.getSalary());
                             Company cmp = Application.getInstance().getCompany(this.getCompanie());
                             cmp.add(employee, job.findDepartment());
-                            Application.getInstance().remove((User) request.getValue1());
+                            Application.getInstance().remove((User) requests.get(i).getValue1());
                             job.setNoPositions(job.getNoPositions() - 1);
-                            job.notifyOneObserver((User) request.getValue1(), "Felicitari, ai fost acceptat pentru jobul " + job.getName());
+                            job.notifyOneObserver((User) requests.get(i).getValue1(), "Felicitari, ai fost acceptat pentru jobul " + job.getName());
 
-                            for (Job job1 : ((User) request.getValue1()).getJobs()) {
-                                job1.dettach((User) request.getValue1());
+                            for (Job job1 : ((User) requests.get(i).getValue1()).getJobs()) {
+                                job1.dettach((User) requests.get(i).getValue1());
                             }
 
                             if (job.getNoPositions() == 0) {
@@ -82,7 +82,8 @@ public class Manager extends Employee {
                     }
                 }
 
-                this.requests.remove(request);
+                this.requests.remove(requests.get(i));
+                i--;
             }
         }
 
