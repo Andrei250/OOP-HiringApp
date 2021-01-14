@@ -165,5 +165,6 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
         p.revalidate();
         button.setEnabled(false);
         userDefaultListModel.removeElement(user);
+        companyJList.clearSelection();
     }
 }
