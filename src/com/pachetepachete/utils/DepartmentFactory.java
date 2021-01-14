@@ -2,6 +2,9 @@ package com.pachetepachete.utils;
 
 import com.pachetepachete.Models.*;
 
+/*
+    Factory pentru departamente.
+ */
 public class DepartmentFactory {
     public Department getDepartment(String departmentType) {
         if (departmentType == null) {

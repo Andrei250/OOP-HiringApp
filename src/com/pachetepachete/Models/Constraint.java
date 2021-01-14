@@ -2,6 +2,10 @@ package com.pachetepachete.Models;
 
 import java.util.Date;
 
+/*
+    Entitatea Contraint.
+ */
+
 public class Constraint {
     private Double start;
     private Double end;

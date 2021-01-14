@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+/*
+    Entitatea Company.
+ */
 public class Company extends Subject {
     private String name;
     private Manager manager;
@@ -186,6 +189,9 @@ public class Company extends Subject {
             return null;
         }
 
+        /*
+            Cauta recruiterul cel mai indepartat in reteaua sociala.
+         */
 
         for (Recruiter recruiter1 : this.recruiters) {
             int degree = user.getDegreeInFriendship(recruiter1);
@@ -206,6 +212,10 @@ public class Company extends Subject {
 
         return recruiter;
     }
+
+    /*
+        Caut un departament dupa nume.
+     */
 
     public Department getDepartmentByName(String name) {
         return Application.getIfDepartmentExists(name, this.getDepartments());

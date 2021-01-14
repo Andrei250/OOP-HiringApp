@@ -4,6 +4,10 @@ import com.pachetepachete.Exceptions.InvalidDatesException;
 import com.pachetepachete.utils.Xerox;
 
 import java.util.Date;
+/*
+    Entitatea Education care este de tip comparable si
+    foloseste prototype pattern pentru a copia.
+ */
 
 public class Education extends Xerox implements Comparable<Education> {
     private Date start;

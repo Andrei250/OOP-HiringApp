@@ -1,5 +1,8 @@
 package com.pachetepachete.Models;
 
+/*
+    Departamentul Marketing.
+ */
 public class Marketing extends Department {
     private double tax;
 

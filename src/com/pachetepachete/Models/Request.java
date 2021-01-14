@@ -1,5 +1,8 @@
 package com.pachetepachete.Models;
 
+/*
+    Entitatea Request.
+ */
 public class Request<K, V> implements Comparable<Request<K,V>> {
     private K key;
     private V value1, value2;

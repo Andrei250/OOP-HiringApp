@@ -5,6 +5,10 @@ import com.pachetepachete.Models.User;
 
 import java.util.ArrayList;
 
+/*
+    Entitatea subject pentru frameuri.
+    Buna la comunicarea dintre interfete.
+ */
 public class SubjectFrame {
     private ArrayList<ObserverFrame> observers;
 

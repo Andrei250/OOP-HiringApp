@@ -6,7 +6,9 @@ import com.pachetepachete.utils.Subject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+/*
+    Entitatea Job care este subiectul design pattern-ului ObserverJob.
+ */
 public class Job extends Subject {
     private String name;
     private String company;
@@ -93,6 +95,7 @@ public class Job extends Subject {
         return isOpened;
     }
 
+    //Notific toti observerii in legatura cu jobul acesta.
     public void setOpened(boolean opened) {
         isOpened = opened;
 

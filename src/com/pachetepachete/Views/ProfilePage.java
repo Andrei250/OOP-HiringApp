@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+//pagina de profil a fiecarui user
 public class ProfilePage implements ActionListener{
     private JScrollPane jScrollPane;
     private JPanel bigBox;
@@ -52,6 +53,7 @@ public class ProfilePage implements ActionListener{
         bigBox.revalidate();
     }
 
+    //Caut toti userii cu numele si prenumele cautat( sauc are contin substringurile respective)
     @Override
     public void actionPerformed(ActionEvent e) {
         String last_name = nume.getText();

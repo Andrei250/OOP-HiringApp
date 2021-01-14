@@ -6,6 +6,11 @@ import com.pachetepachete.utils.Pair;
 
 import java.util.*;
 
+/*
+    Entitatea abstracta Consumer
+    Am folosit un Array de notifications pentru a folosi
+    observerul ca sistem de notificari.
+ */
 public abstract class Consumer implements Comparator<Consumer> {
     private Resume resume;
     private ArrayList<Consumer> friends;
@@ -26,6 +31,7 @@ public abstract class Consumer implements Comparator<Consumer> {
         if (!this.notifications.contains(notification)) {
 
             for (Notification notification1 : this.notifications) {
+                //verific sa nu exista duplicate in mesaj
                 if (notification.getMessage().equals(notification1.getMessage())) {
                     return;
                 }
@@ -109,11 +115,13 @@ public abstract class Consumer implements Comparator<Consumer> {
         return this.resume.modify(oldEducation, education);
     }
 
+    /*
+        BFS cu HashSet pentru a verifica daca am vizitat un prieten deja.
+     */
     public int getDegreeInFriendship(Consumer consumer) {
         LinkedList<Pair<Consumer, Integer>> queue = new LinkedList<>();
         queue.add(new Pair<>(this, 0));
         HashSet<Consumer> visited = new HashSet<>();
-
 
         while (!queue.isEmpty()) {
             Consumer con = queue.getFirst().getKey();
@@ -138,6 +146,11 @@ public abstract class Consumer implements Comparator<Consumer> {
     public void remove(Consumer consumer) {
         this.friends.remove(consumer);
     }
+
+    /*
+        Am considerat prima educatie din lista sortata ca fiind buna.
+        Daca nu are data de sfarsit dau throw la o eroare.
+     */
 
     public Integer getGraduationYear() {
         if (this.resume.getEducations() == null) {
@@ -228,7 +241,9 @@ public abstract class Consumer implements Comparator<Consumer> {
         return ans.toString();
     }
 
-
+    /*
+        Entitatea Resume construita cu patternul Builder.
+     */
     public static class Resume {
         private Information information;
         private ArrayList<Education> educations;
@@ -331,6 +346,9 @@ public abstract class Consumer implements Comparator<Consumer> {
                     "\n";
         }
 
+        /*
+            Buidler Pattern pentru Resume;
+         */
         public static class ResumeBuilder {
             private Information information;
             private ArrayList<Education> educations;

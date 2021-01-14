@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/*
+    Entitatea User. Este un Observer pentru a primii notificari la schimbarea unui job.
+ */
 public class User extends Consumer implements ObserverJob {
     private ArrayList<Job> jobs;
     private ArrayList<String> following;

@@ -13,13 +13,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+    Controller care porneste interfata grafica a aplicatiei.
+    Folosesc CardLayout pentru a face trecerea intre interfete.
+    Folosesc un fel de "Mediator" pattern pentru a putea comunica intergetele
+    intre ele.
+ */
 public class ApplicationController extends JFrame implements ActionListener {
     private CardLayout layout;
     private JPanel panelsSide;
     private JPanel buttonsSide;
 
     public ApplicationController() {
-        super("Admin Panel");
+        super("Application");
         setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1000, 500));
         getContentPane().setBackground(Color.blue);
@@ -58,6 +64,9 @@ public class ApplicationController extends JFrame implements ActionListener {
         pack();
     }
 
+    /*
+        Navigarea intre intergete.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (((JButton) e.getSource()).getActionCommand().equals("Admin Page")) {

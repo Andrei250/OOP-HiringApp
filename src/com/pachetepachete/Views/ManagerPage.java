@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/*
+    Admin panelul managerului.
+ */
 public class ManagerPage implements ObserverFrame {
     JPanel panel;
     private SubjectFrame subjectFrame;
@@ -45,6 +48,7 @@ public class ManagerPage implements ObserverFrame {
         mdl.getColumn(2).setPreferredWidth(50);
         mdl.getColumn(3).setPreferredWidth(50);
 
+        //Actiune de reject pentru butonul Reject din tabel
         Action reject = new AbstractAction()
         {
             @Override
@@ -66,6 +70,8 @@ public class ManagerPage implements ObserverFrame {
             }
         };
 
+        //actiune de accept pentru butonul accept din tabel.
+        //ma asigur ca interfetele comunica cu ajutorul unui design pattern.
         Action accept = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +92,7 @@ public class ManagerPage implements ObserverFrame {
                     job.dettach(user);
 
                     Application.getInstance().remove(user);
-                    subjectFrame.notifyAll(user);
+                    subjectFrame.notifyAll(user); // notific toate interfetele sa faca schimbarile necesare.
 
                     if (job.getNoPositions() == 0) {
                         for (int i = model.getRowCount() - 1; i >= 0; --i) {

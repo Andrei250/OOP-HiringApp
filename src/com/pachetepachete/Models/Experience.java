@@ -5,6 +5,11 @@ import com.pachetepachete.utils.Xerox;
 
 import java.util.Date;
 
+/*
+    Entitatea Experience care este de tip comparable si
+    foloseste prototype pattern pentru a copia.
+ */
+
 public class Experience extends Xerox implements Comparable<Experience> {
     private Date start;
     private Date end;

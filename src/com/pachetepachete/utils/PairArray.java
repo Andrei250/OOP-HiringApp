@@ -2,6 +2,9 @@ package com.pachetepachete.utils;
 
 import java.util.ArrayList;
 
+/*
+    Array custom de perechi cu cateva metode necesare.
+ */
 public class PairArray<K, V> extends ArrayList<Pair<K, V>> {
     public PairArray(int initialCapacity) {
         super(initialCapacity);

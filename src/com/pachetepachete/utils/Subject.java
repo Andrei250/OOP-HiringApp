@@ -1,6 +1,9 @@
 package com.pachetepachete.utils;
 import java.util.ArrayList;
 
+/*
+    Entitatea subject din design pattern-ul observer pentru joburi.
+ */
 public class Subject {
     private ArrayList<ObserverJob> observers = new ArrayList<>();
 

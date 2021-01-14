@@ -3,6 +3,9 @@ package com.pachetepachete.Models;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+/*
+    Departamentul Finance
+ */
 
 public class Finance extends Department {
     public Finance() {
@@ -14,6 +17,7 @@ public class Finance extends Department {
         double sum = 0;
         Calendar calendar = Calendar.getInstance();
 
+        // Calculez timpul in companie pt fiecare
         for (Employee employee : this.getEmployees()) {
             ArrayList<Experience> experiences = employee.getResume().getExperiences();
             Date start = experiences.get(experiences.size() - 1).getStart();

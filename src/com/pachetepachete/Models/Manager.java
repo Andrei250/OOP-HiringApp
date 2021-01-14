@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+/*
+    Entitatea Manager.
+ */
 public class Manager extends Employee {
     private ArrayList<Request<Job, Consumer>> requests;
 
@@ -56,6 +59,9 @@ public class Manager extends Employee {
     public void process(Job job) {
         Collections.sort(this.requests);
 
+        //Parcurg requesturile si verific daca este valid si este pentru jobul
+        //curent. De asemenea verific daca jobul mai este valid.
+        //Procesez requestul si fac modificarile necesare.
         for (int i = 0; i < requests.size(); ++i) {
             if (requests.get(i).getKey() == job) {
                 if (job.isOpened()) {

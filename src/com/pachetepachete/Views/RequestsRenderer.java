@@ -7,6 +7,9 @@ import com.pachetepachete.Models.Request;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+    CellRenderer pentru requesturi.
+ */
 public class RequestsRenderer extends JPanel implements ListCellRenderer<Request<Job, Consumer>> {
     private JButton accept, reject;
     private JTextArea info;
@@ -24,7 +27,6 @@ public class RequestsRenderer extends JPanel implements ListCellRenderer<Request
 
         accept.setBackground(Color.green);
         accept.setForeground(Color.WHITE);
-//        accept.addActionListener(new AcceptRequestController((JList<Request<Job, Consumer>>) list, index));
         reject.setBackground(Color.red);
         reject.setForeground(Color.WHITE);
 

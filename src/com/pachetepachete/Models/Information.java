@@ -6,6 +6,9 @@ import com.pachetepachete.utils.PairArray;
 import java.util.ArrayList;
 import java.util.Date;
 
+/*
+    Entitatea information pentru stocarea informatiilor necesare.
+ */
 public class Information {
     private String nume;
     private String prenume;

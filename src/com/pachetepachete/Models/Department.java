@@ -1,7 +1,9 @@
 package com.pachetepachete.Models;
 
 import java.util.ArrayList;
-
+/*
+    Entitatea abstracta Departament.
+ */
 public abstract class Department {
     private ArrayList<Employee> employees;
     private ArrayList<Job> availableJobs;
@@ -45,6 +47,9 @@ public abstract class Department {
         }
     }
 
+    /*
+        Cauta Job dupa nume.
+     */
     public Job findJobByName(String name) {
         for (Job job : getJobs()) {
             if (job.getName().equalsIgnoreCase(name)) {

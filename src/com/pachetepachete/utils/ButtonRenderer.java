@@ -6,6 +6,11 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
+/*
+    Renderer pentru butoanele din Jtable.
+    De asemenea a trebuit sa fie si TableCellEditor pentru a putea
+    avea functionalitate.
+ */
 public class ButtonRenderer extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, ActionListener {
     private JTable table;
     private Action action;

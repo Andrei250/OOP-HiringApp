@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+/*
+    Controller de citire din fisierele Json.
+    Fiecare metoda citeste dintr-un fisier specific (Conform numelui metodei).
+    Am folosit singleton, deoarece am vrut sa folosesc o singura instanta.
+    Mai multe instante nu erau necesare.
+ */
 public class ReadController {
     private static ReadController readController;
     private Application application;
@@ -37,6 +43,10 @@ public class ReadController {
 
         return readController;
     }
+
+    /*
+        Citirea companiilor.
+     */
 
     public void readJSONCompanies(String path) {
         DepartmentFactory factory = new DepartmentFactory();
@@ -72,6 +82,10 @@ public class ReadController {
             e.printStackTrace();
         }
     }
+
+    /*
+        Citirea joburilor.
+     */
 
     public void readJSONJobs(String path) {
         try {
@@ -116,11 +130,16 @@ public class ReadController {
         }
     }
 
+    /*
+        Citirea consumerilor.
+     */
     public void readJSONConsumers(String path) {
         try {
             Object obj = parser.parse(new FileReader(path));
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray employees = (JSONArray) jsonObject.get("employees");
+
+            //EMPLOYEES
 
             for (JSONObject empObj : (Iterable<JSONObject>) employees) {
                 String currentComp = null;
@@ -156,6 +175,7 @@ public class ReadController {
 
             }
 
+            //RECRUITERS
             JSONArray recruiters = (JSONArray) jsonObject.get("recruiters");
 
             for (JSONObject empObj : (Iterable<JSONObject>) recruiters) {
@@ -188,6 +208,7 @@ public class ReadController {
 
             }
 
+            //USERS
             JSONArray users = (JSONArray) jsonObject.get("users");
 
             for (JSONObject empObj : (Iterable<JSONObject>) users) {
@@ -219,6 +240,8 @@ public class ReadController {
                 user.setFollowing(following);
                 application.add(user);
             }
+
+            //MANAGERS
 
             JSONArray managers = (JSONArray) jsonObject.get("managers");
 
@@ -257,6 +280,9 @@ public class ReadController {
         }
     }
 
+    /*
+    Citirea unui simlu User pe care il convertesc apoi in entitatea buna.
+     */
     private User getEmployee(JSONObject empObj) throws InvalidDatesException, ParseException {
         String name = (String) empObj.get("name");
         String email = (String) empObj.get("email");

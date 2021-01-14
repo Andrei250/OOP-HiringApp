@@ -1,5 +1,8 @@
 package com.pachetepachete.Models;
 
+/*
+    Entitatea Employee
+ */
 public class Employee extends Consumer {
     private String companie;
     private int salariu;
@@ -18,6 +21,7 @@ public class Employee extends Consumer {
         this.salariu = salariu;
     }
 
+    //Constructor de copiere
     public Employee(Consumer consumer, String companie, int salariu) {
         super(consumer);
         this.companie = companie;

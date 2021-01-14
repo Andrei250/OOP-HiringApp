@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+/*
+    Interfata de admin Panel.
+ */
 public class AdminPanel implements ListSelectionListener, ActionListener, ObserverFrame {
     private JPanel panel;
     private JList<String> companyJList;
@@ -76,6 +79,7 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
         return panel;
     }
 
+    //Creeaza un arbore cu radacina in companie
     public JTree getTree(Company company) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(company.getName());
         for (Department department : company.getDepartments()) {
@@ -85,6 +89,7 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
         return new JTree(root);
     }
 
+    //Creez arbore cu valoarea salariilor din departament.
     public JTree getTreeWithBudget(Company company) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(company.getName());
         for (Department department : company.getDepartments()) {
@@ -97,6 +102,7 @@ public class AdminPanel implements ListSelectionListener, ActionListener, Observ
         return new JTree(root);
     }
 
+    //Creez nodurile arborelui din companie
     private DefaultMutableTreeNode getDepNode(Department department) {
         DefaultMutableTreeNode dep = new DefaultMutableTreeNode(Application.getInstance().getDepartmentName(department));
         DefaultMutableTreeNode people = new DefaultMutableTreeNode("Empoyees");

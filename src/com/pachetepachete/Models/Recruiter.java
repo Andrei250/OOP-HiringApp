@@ -1,5 +1,9 @@
 package com.pachetepachete.Models;
 
+
+/*
+    Entitatea Recruiter.
+ */
 public class Recruiter extends Employee implements Comparable<Recruiter> {
     public Double rating;
 

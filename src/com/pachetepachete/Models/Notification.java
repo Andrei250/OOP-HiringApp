@@ -1,5 +1,8 @@
 package com.pachetepachete.Models;
 
+/*
+    Entitatea Notification.
+ */
 public class Notification {
     private String message;
 
