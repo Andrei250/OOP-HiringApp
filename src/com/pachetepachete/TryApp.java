@@ -13,7 +13,7 @@ public class TryApp {
 
     public static void main(String[] args) throws ParseException, InvalidDatesException, NoRecruitersException {
         Application application = Application.getInstance();
-        Test.main(new String[]{});
+        LoadFiles.main(new String[]{});
         new ApplicationController();
     }
 
