@@ -96,7 +96,9 @@ public class ManagerPage implements ObserverFrame {
 
                     if (job.getNoPositions() == 0) {
                         for (int i = model.getRowCount() - 1; i >= 0; --i) {
-                            ((DefaultTableModel)model).removeRow(i);
+                            if (job.getName().equalsIgnoreCase((String) ((DefaultTableModel)model).getValueAt(i, 4))) {
+                                ((DefaultTableModel)model).removeRow(i);
+                            }
                         }
 
                         job.notifyAllObserverOfCanceling("Nu ai fost acceptat");
