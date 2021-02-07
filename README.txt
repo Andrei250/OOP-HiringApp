@@ -1,7 +1,6 @@
 Dumitrescu Andrei 323CC
 Grad de dificultate: Mediu
-Timp acordat: Vreo 2 saptamani adunate. (mult timp pierdut pe interfetele
-grafice care arata naspa, deoarece design-ul nu e placerea si atributia mea).
+Timp acordat: Vreo 2 saptamani adunate.
 
 Detalii din implementare mai importante sau mai greu de inteles:
 
